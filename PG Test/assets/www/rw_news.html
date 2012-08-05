@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8">
+	
+    <title> RedWhiteReader </title> 
+
+    <link rel="stylesheet" href="./jquery.mobile-1.1.1.min.css" />
+    <link rel="stylesheet" href="./RedWhite.min.css" />
+
+	<script type="text/javascript" charset="utf-8" src="./cordova-2.0.0.js"></script>
+    <script src="./jquery-latest.min.js"></script>
+    <script src="./jquery.mobile-1.1.1.min.js"></script>
+    <script src="./jquery.jfeed.pack.js"></script>
+   
+    <script src="./main.js"></script>
+    <script>
+        $(document).ready(function(){
+					jQuery.getFeed({
+							url: 'http://redwhite.ru/news/rwnews/rss/',
+							success: function(feed) {
+								var item_res = "test";
+								for(var j = 0; j < feed.items.length; j++) {
+									item_res = '<li><a href="./detail.html?id='+j+'" ><p><strong>('+feed.items[j].id +') '+ feed.items[j].title +'</strong></p><p>'+feed.items[j].description+'</p><p>'+feed.items[j].pubDate+'</p></a></li>';
+									$('#news').append(item_res);
+									$('#news').listview('refresh');
+								}
+							}
+						});
+						
+					$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
+						$('ads').html(data);
+					});
+					
+        });
+   </script>
+   
+</head> 
+	<body onload="init();">
+		
+			<header data-role="header" data-position="fixed">  
+					<a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse">Назад</a>
+					<h1>Red White Reader</h1>
+					<a onclick="navigator.app.exitApp()" data-rel="back" data-icon="delete" data-iconpos="notext" data-direction="reverse">Выход</a>
+			</header>
+			
+			
+			<div data-role="navbar">
+				<ul>
+					<li><a href="./index.html" data-transition="slide" data-theme="a" class="ui-btn-active">Спартак</a></li>
+					<li><a href="./rw_news.html" data-transition="slide" data-theme="a">Cайт</a></li>
+					<li><a href="./options.html" data-transition="slide" data-theme="a">Опции</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		
+		<content>
+			<div data-role="content">
+				
+				<ul id="news" data-role="listview" data-theme="a">  	
+					<li data-role="list-divider">Все новости сайта RedWhite.ru</li>
+				</ul>
+			
+			</div>
+		</content>
+			
+			<footer data-role="footer" data-position="fixed">  
+				<center><ads>ADS TO SUPPORT DEVELOPER</ads></center>
+			</footer>
+			
+	</body>
+</html>
