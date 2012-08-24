@@ -5,91 +5,86 @@
 	
     <title> RedWhiteReader </title> 
 
-    <link rel="stylesheet" href="./jquery.mobile-1.2.0-alpha.1.min.css" />
+    <link rel="stylesheet" href="./system/jquery.mobile-1.2.0-alpha.1.min.css" />
+    <link rel="stylesheet" href="./system/redwhite.min.css" />
 
-	<script type="text/javascript" charset="utf-8" src="./cordova-2.0.0.js"></script>
-    <script src="./jquery-latest.min.js"></script>
-    <script src="./jquery.mobile-1.2.0-alpha.1.min.js"></script>
-    <script src="./jquery.jfeed.pack.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./system/cordova-2.0.0.js"></script>
+    <script src="./system/jquery-latest.min.js"></script>
+    <script src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
    
-    <script src="./main.js"></script>
+    <script src="./system/main.js"></script>
     <script>
-        $(document).ready(function(){
-		
-					jQuery.getFeed({
-							url: 'http://redwhite.ru/news/spnews/rss/',
-							success: function(feed) {
-								var item_res = "";
-								var detail_res = "";
-								for(var j = 0; j < feed.items.length; j++) {
-									item_res += '<li><a href="#news'+j+'" ><p><strong>'+ feed.items[j].title +'</strong></p><p>'+feed.items[j].description+'</p><p>'+feed.items[j].pubDate+'</p></a></li>';
-									detail_res +='<div data-role="page" id="news'+j+'"><div data-role="content" data-theme="c" >'+ feed.items[j].title +'<p>'+feed.items[j].description+'</p></div></div>';
-								}
-								$('#news').append(item_res);
-								$('#news_main').after(detail_res);
-								$('#news').listview('refresh');
-							}
-						});
-						
-						alert(detail_res);
-						
-					$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
-						$('ads').html(data);
-						$('#news').listview('refresh');
-					});
-					
-        });
+        $(document).ready(function(){});
+				
+		var DB = window.localStorage;
+
+		var GetSystem = function() {
+			Systype = DB.getItem("system-type");
+			if(Systype != null){
+					$.mobile.changePage("./"+Systype+"/index.html");
+				}
+		}
+
+				
+		function SetPadSystem() {
+			DB.setItem("system-type", "tablet");
+			$.mobile.changePage("./tablet/index.html");
+		}
+				
+		function SetPhoneSystem() {
+			DB.setItem("system-type", "phone");
+			$.mobile.changePage("./phone/index.html");
+		}
    </script>
    
 </head> 
 	<body onload="init();">
 		<div data-role="page" id="news_main">
-			<header data-role="header" data-theme="c" data-position="fixed">  
+			<header data-role="header" data-theme="a" data-position="fixed">  
 					<a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse">Назад</a>
 					<h1>Red White Reader</h1>
 					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
-						<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all">
-							<div data-role="header" data-theme="c" class="ui-corner-top">
+						<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+							<div data-role="header" data-theme="a" class="ui-corner-top">
 								<h1>Выход</h1>
 							</div>
-							<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">
+							<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
 								<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
 								<center>
-									<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Отмена</a>    
-									<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="c">Выход</a>
+									<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>    
+									<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
 								</center>
 							</div>
-						</div>
-
-						<div data-role="navbar" data-theme="c" >
-							<ul>
-								<li><a href="./index.html" data-transition="slide" class="ui-btn-active">Спартак</a></li>
-								<li><a href="./rw_news.html" data-transition="slide">Cайт</a></li>
-								<li><a href="./options.html" data-transition="slide">Опции</a></li>
-							</ul>
-						</div><!-- /navbar -->		
+						</div>	
 			</header>
 		
 		
 		
-			<div data-role="content" data-theme="c" >
-				
-				<ul id="news" data-role="listview">  	
-					<li data-role="list-divider">Все новости сайта RedWhite.ru</li>
-				</ul>
-			
+			<div data-role="content" data-theme="a" >
+				<center>
+					<h2>Первый запуск приложения</h2>
+					
+					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства. 
+					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет. 
+					Однако вы можете изменить тип устройства вы сможете изменить в меню настроек.
+					</p>
+					
+					<a onclick="SetPadSystem();" href="#" data-role="button" data-icon="gear">Tablet Pads</a>
+					
+					<a onclick="SetPhoneSystem();" href="#" data-role="button" data-icon="grid">SmartPhone</a>
+				</center>
 			</div>
 			
 			
-			<footer data-role="footer" data-position="fixed" data-theme="c" >  
+			<footer data-role="footer" data-position="fixed" data-theme="a" >  
 				<center>Поддержи разработчика: 
 <a href="#AdsDialog" data-rel="popup" data-rel="back" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Реклама</a>
 				</center>
-				<div data-role="popup" id="AdsDialog" data-overlay-theme="a" data-theme="c" style="max-width:500px;" class="ui-corner-all">
-							<div data-role="header" data-theme="c" class="ui-corner-top">
+				<div data-role="popup" id="AdsDialog" data-overlay-theme="a" data-theme="a" style="max-width:500px;" class="ui-corner-all">
+							<div data-role="header" data-theme="a" class="ui-corner-top">
 								<h1>Реклама</h1>
 							</div>
-							<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">
+							<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
 								<h3 class="ui-title">Поддержи разработчика, кликни на рекламу!</h3>
 								<p></p>
 								<center><ads></ads></center>
@@ -104,8 +99,6 @@
 		
 		
 		<div id="news-details">
-			
-			
 		</div>
 			
 		
