@@ -32,6 +32,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.phonegap.DroidGap"  android:label="RedWhite Reader"  android:configChanges="orientation|keyboardHidden">
+<intent-filter>
+</intent-filter>
+</activity>
     </application>
 
 </manifest>
