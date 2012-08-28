@@ -30,7 +30,7 @@ var onMenuKeyDown = function() {
 	location.redirect("../options.html");
 }
 
-var onMenuKeyDown = function() {
+var preventBehavior = function() {
     // Handle the back button
 	navigator.notification.vibrate(1);
 }
