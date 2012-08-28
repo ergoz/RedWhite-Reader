@@ -1,15 +1,15 @@
-TWITTER BOOTSTRAP
+RedWhite Reader
 =================
 
-Bootstrap is Twitter's toolkit for kickstarting CSS for websites, apps, and more. It includes base CSS styles for typography, forms, buttons, tables, grids, navigation, alerts, and more.
+RedWhite Reader - App to read Spartak Moscow Football Club news that provided by RedWhite.RU. All latest news, tables, scores in your phone or tablet.
 
-To get started -- checkout http://twitter.github.com/bootstrap!
+To get started -- checkout http://ergoz.github.com/RedWhite-Reader
 
 
 Usage
 -----
 
-You can use Twitter Bootstrap in one of two ways: just drop the compiled CSS into any new project and start cranking, or run LESS on your site and compile on the fly like a boss.
+Install and use.
 
 Here's what the LESS version looks like:
 
@@ -50,23 +50,8 @@ Bug tracker
 
 Have a bug? Please create an issue here on GitHub!
 
-https://github.com/twitter/bootstrap/issues
+https://github.com/ergoz/RedWhite-Reader/issues
 
-
-Twitter account
----------------
-
-Keep up to date on announcements and more by following Bootstrap on Twitter, <a href="http://twitter.com/TwBootstrap">@TwBootstrap</a>.
-
-
-Mailing list
-------------
-
-Have a question? Ask on our mailing list!
-
-twitter-bootstrap@googlegroups.com
-
-http://groups.google.com/group/twitter-bootstrap
 
 
 Developers
@@ -86,20 +71,16 @@ Watchr is required for this command to run.
 Authors
 -------
 
-**Mark Otto**
+**Sergey Morozov**
 
-+ http://twitter.com/mdo
-+ http://github.com/markdotto
-
-**Jacob Thornton**
-
-+ http://twitter.com/fat
-+ http://github.com/fat
++ http://ergoz.ru/contacts/sergey
++ http://github.com/ergoz
++ http://twitter.com/ergozru
 
 
 License
 ---------------------
 
-Copyright 2011 Twitter, Inc.
+Copyright 2012 ErgoZ Development Studio.
 
-Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
+Licensed under the PRIVATE
