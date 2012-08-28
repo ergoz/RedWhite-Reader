@@ -11,17 +11,8 @@ Usage
 
 Install and use.
 
-Here's what the LESS version looks like:
-
 ``` html
-<link rel="stylesheet/less" type="text/css" href="lib/bootstrap.less">
-<script src="less.js" type="text/javascript"></script>
-```
-
-Or if you prefer, the standard css way:
-
-``` html
-<link rel="stylesheet" type="text/css" href="bootstrap.css">
+echo "trololo";
 ```
 
 For more info, refer to the docs!
@@ -29,8 +20,6 @@ For more info, refer to the docs!
 
 Versioning
 ----------
-
-For transparency and insight into our release cycle, and for striving to maintain backwards compatibility, Bootstrap will be maintained under the Semantic Versioning guidelines as much as possible.
 
 Releases will be numbered with the follow format:
 
@@ -56,16 +45,8 @@ https://github.com/ergoz/RedWhite-Reader/issues
 
 Developers
 ----------
-
-We have included a makefile with convenience methods for working with the bootstrap library.
-
 + **build** - `make build`
-This will run the less compiler on the bootstrap lib and generate a bootstrap.css and bootstrap.min.css file.
-The lessc compiler is required for this command to run.
-
 + **watch** - `make watch`
-This is a convenience method for watching your less files and automatically building them whenever you save.
-Watchr is required for this command to run.
 
 
 Authors

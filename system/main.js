@@ -43,7 +43,12 @@ if(navigator.network && navigator.network.connection.type != Connection.NONE) {
 
 function onMenuKeyDown() {
     // Handle the back button
-	$.mobile.changePage("/options.html");
+	navigator.notification.vibrate(1);
+    navigator.notification.beep(1);
+	navigator.notification.vibrate(1);
+    navigator.notification.beep(1);
+	navigator.notification.vibrate(1);
+	$.mobile.changePage("./options.html");
 }
 
 

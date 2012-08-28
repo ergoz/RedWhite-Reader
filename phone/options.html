@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8">
+	
+    <title> RedWhiteReader </title> 
+
+    <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
+    <link rel="stylesheet" href="../system/redwhite.min.css" />
+
+	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+    <script src="../system/jquery-latest.min.js"></script>
+    <script src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
+   
+    <script src="../system/main.js"></script>
+    <script>
+		
+		var DB = window.localStorage;
+			
+		var property = new Array();	
+		property['login'] = DB.getItem("login");
+		property['systype'] = DB.getItem("systype");
+		property['newsupdate'] = DB.getItem("newsupdate");
+		
+	
+		function save_opts() {
+			property['login'] = $("input[type='text']#username").val();
+			property['systype'] = $("select#systype").val();
+			alert($("input[type='checkbox']#newsupdate:checked").val());
+			property['newsupdate'] = $("input[type='checkbox']#newsupdate:checked").val();
+			
+			//прописываем данные в базу
+			DB.setItem("login", property['login']);
+			DB.setItem("systype", property['systype']);
+			DB.setItem("newsupdate", property['newsupdate']);
+			navigator.notification.alert('Настройки успешно изменены!', gohome, 'Изменение настроек', 'Ок');
+		}
+		
+		
+		function gohome() {
+			$.mobile.changePage("./"+property['systype']+"/index.html");
+		}
+		
+		
+		
+		
+		
+		
+		$(document).ready(function(){
+			$("input[type='text']#username").val(property['login']);
+			
+			$("select#systype [value='"+property['systype']+"']").attr("selected", "selected");
+			$("select#systype").selectmenu('refresh');
+			
+			$("input[type='checkbox']#newsupdate[value='"+property['newsupdate']+"']").attr("checked","checked");
+			$("input[type='checkbox']#newsupdate").checkboxradio("refresh");
+			
+			$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
+					alert(data);
+					$('ads').html(data);
+			});
+			
+			
+		});
+		
+   </script>
+   
+</head> 
+	<body onload="init();">
+			<header data-role="header" data-theme="a" data-position="fixed">  
+					<a onclick="gohome();" data-icon="home" data-iconpos="notext">Главная</a>
+					<h1>Настройки</h1>
+					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+						<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:600px;" class="ui-corner-all">
+							<div data-role="header" data-theme="a" class="ui-corner-top">
+								<h1>Выход</h1>
+							</div>
+							<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+								<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+								<center><ads></ads></center>
+								<center>
+									<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>    
+									<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+								</center>
+							</div>
+						</div>	
+			</header>
+		
+		
+		
+			<div data-role="content" data-theme="a" >
+				<center>
+					<h3>Настройки RedWhite Reader</h3>
+
+<form action="" method="post">
+	
+		<label for="username">Логин на RedWhite.ru:</label>
+		<input type="text" name="username" id="username" value=""/>
+
+	
+	
+		<label for="systype">Тип устройства:</label>
+		<select name="systype" id="systype" data-native-menu="false">
+			<option value="phone">Смартфон</option>
+			<option value="tablet">Планшет</option>
+		</select>
+		
+		
+		<label for="newsupdate">Автоматически обновлять новости</label>	
+		<input type="checkbox" name="newsupdate" id="newsupdate" value="true" />
+			
+</form>
+
+				</center>
+			</div>
+			
+			
+			<footer data-role="footer" data-position="fixed">  
+				<div data-role="navbar" class="nav-footer" data-iconpos="top">
+				<center>
+					<ul>
+						<li><a href="#"  data-role="button" data-icon="delete" onclick="gohome();" >Отмена</a></li>
+						<li><a href="#"  data-role="button" data-icon="check" onclick="save_opts();" >Сохранить</a></li>
+					</ul>
+				</center>
+				</div>
+			</footer>
+		
+	</body>
+</html>
