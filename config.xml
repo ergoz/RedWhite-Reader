@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "com.ergoz.rwreader"
+	version 	= "1.0.6">
+
+	<name>RedWhite Reader</name>
+
+	<description>
+		RedWhite Reader - App to read Spartak Moscow Football Club news that provided by RedWhite.RU. All latest news, tables, scores in your phone or tablet.
+	</description>
+
+	<author href="http://ergoz.ru"
+		email="dev@ergoz.ru">
+		ErgoZ Development Studio
+	</author>
+
+	<icon src="/gap/icons/default.jpg" gap:role="default" />
+	
+	<icon src="/gap/icons/ios/icon-57.png" gap:platform="ios" width="57" height="57" />
+	<icon src="/gap/icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+	<icon src="/gap/icons/ios/icon-114.png" gap:platform="ios" width="114" height="114" />
+	
+	<icon src="/gap/icons/android/ldpi/ic_launcher.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="/gap/icons/android/mdpi/ic_launcher.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="/gap/icons/android/hdpi/ic_launcher.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="/gap/icons/android/xhdpi/ic_launcher.png" gap:platform="android" gap:density="xhdpi" />
+
+	<icon src="/gap/icons/bb/icon.jpg" gap:platform="blackberry" />
+	<icon src="/gap/icons/bb/icon_hover.jpg" gap:platform="blackberry" gap:state="hover"/>
+
+	<icon src="/gap/icons/winphone/icon.png" gap:platform="winphone" />
+	<!--<icon src="/icons/winphone/tileicon.png" gap:platform="winphone" gap:role="background" />-->
+	
+	<icon src="/gap/icons/webos/icon.png" gap:platform="webos" />
+	<icon src="/gap/icons/webos/miniicon.png" gap:platform="webos" gap:role="mini" />
+	
+
+	<gap:splash src="/gap/splash/ios/splash-320-480.png" gap:platform="ios" width="320" height="480" />
+	<gap:splash src="/gap/splash/ios/splash-640-960.png" gap:platform="ios" width="640" height="960" />
+	<gap:splash src="/gap/splash/ios/splash-1024-768.png" gap:platform="ios" width="1024" height="768" />
+	<gap:splash src="/gap/splash/ios/splash-768-1024.png" gap:platform="ios" width="768" height="1024" />
+	
+	<gap:splash src="/gap/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="/gap/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="/gap/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="/gap/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+	
+	<gap:splash src="/gap/splash/bb/splash.png" gap:platform="blackberry" />
+	
+	<gap:splash src="/gap/splash/winphone/splash.png" gap:platform="winphone" />
+
+	
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<feature name="http://api.phonegap.com/1.0/notification"/>
+
+	<preference name="orientation" value="both" />
+	<preference name="fullscreen" value="true" />
+	<preference name="webviewbounce" value="false" />
+	<preference name="exit-on-suspend" value="false" />
+	<preference name="disable-cursor" value="true" />
+	<preference name="android-minSdkVersion" value="7" />
+	<preference name="android-maxSdkVersion" value="16+" />
+	<preference name="android-installLocation" value="auto" />
+</widget>

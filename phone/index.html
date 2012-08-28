@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8">
+	
+    <title> RedWhiteReader </title> 
+
+    
+    <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
+    <link rel="stylesheet" href="../system/redwhite.min.css" />
+
+	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+    <script src="../system/jquery-latest.min.js"></script>
+    <script src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
+   
+    <script src="../system/main.js"></script>
+    <script>
+        $(document).ready(function(){
+		
+			$.ajax({
+				type: "GET",
+				url: "http://redwhite.ru/news/spnews/rss/",
+				dataType: "xml",
+				success: xmlParser
+			});
+
+			function xmlParser(xml) {
+				$(xml).find("item").each(function () {
+					alert($(this).text());
+					vibrate();
+				});
+			}
+		/*
+					jQuery.getFeed({
+							url: 'http://redwhite.ru/news/spnews/rss/',
+							success: function(feed) {
+								var item_res = "";
+								var detail_res = "";
+								for(var j = 0; j < feed.items.length; j++) {
+									item_res += '<li><a href="#news'+j+'" ><p><strong>'+ feed.items[j].title +'</strong></p><p>'+feed.items[j].description+'</p><p>'+feed.items[j].pubDate+'</p></a></li>';
+									detail_res +='<div data-role="page" id="news'+j+'"><div data-role="content" data-theme="c" >'+ feed.items[j].title +'<p>'+feed.items[j].description+'</p></div></div>';
+								}
+								$('#news').append(item_res);
+								$('#news_main').after(detail_res);
+								$('#news').listview('refresh');
+							}
+						});
+						
+						alert(detail_res);
+						*/
+						
+						
+			$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
+				$('ads').html(data);
+			});
+					
+        });
+   </script>
+   
+</head> 
+	<body onload="init();">
+		
+			<header data-role="header" data-theme="a" data-position="fixed">  
+					<a href="../index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
+					<h1>Red White Reader</h1>
+					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+					<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+						<div data-role="header" data-theme="a" class="ui-corner-top">
+							<h1>Выход</h1>
+						</div>
+						<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+							<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+							<center>
+								<p><center><ads></ads></center></p>
+								<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>    
+								<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+							</center>
+						</div>
+					</div>	
+			</header>
+		
+		
+			<div data-role="content" data-theme="a" >
+				<ul id="news" data-role="listview">  	
+					<li>Спартак прибыл в Истамбул</li>
+					<li>Роман Асхабадзе: Нет поводов волноваться за Эменике</li>
+					<li>Еськов рассудит «Локомотив» и «Спартак»</li>	
+					<li>Кафельников: надеюсь, Эмери привьёт "Спартаку" стиль, который будет отличаться</li>
+					<li>RedWhite.ru требуются новостники </li>
+					<li>Эмери требует 200 процентов</li>
+				</ul>
+			</div>
+			
+			
+		<footer data-role="footer" data-position="fixed">  
+				<style>
+				.nav-footer .ui-btn-text {font-size: 0.75em !important;}
+				.nav-footer .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+				.nav-footer .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+				#news .ui-icon { background:  url(../system/icons/news.png) 50% 50% no-repeat; background-size: 28px 28px; }
+				#charts .ui-icon { background:  url(../system/icons/charts.png) 50% 50% no-repeat; background-size: 30px 24px; }
+				#youtube .ui-icon { background:  url(../system/icons/youtube.png) 50% 50% no-repeat; background-size: 28px 28px; }
+				#twitter .ui-icon { background:  url(../system/icons/calendar.png) 50% 50% no-repeat; background-size: 24px 30px; }
+				#online .ui-icon { background:  url(../system/icons/online.png) 50% 50% no-repeat; background-size: 30px 28px; }
+				#calendar .ui-icon { background:  url(../system/icons/calendar.png) 50% 50% no-repeat; background-size: 24px 30px; }
+				</style>
+	
+				<div data-role="navbar" class="nav-footer" data-iconpos="top">
+				<center>
+					<ul>
+						<li><a href="#" id="news" data-icon="custom">Новости</a></li>
+						<li><a href="#" id="charts" data-icon="custom">Таблицы</a></li>
+						<li><a href="#" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="#" id="twitter" data-icon="custom">Twitter</a></li>
+						<li><a href="#" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#" id="calendar" data-icon="custom">Расписание</a></li>
+					</ul>
+				</center>
+				</div>
+		</footer>
+		
+	</body>
+</html>
