@@ -48,7 +48,7 @@ function onMenuKeyDown() {
 	navigator.notification.vibrate(1);
     navigator.notification.beep(1);
 	navigator.notification.vibrate(1);
-	$.mobile.changePage("./options.html");
+	$.mobile.changePage("../options.html");
 }
 
 

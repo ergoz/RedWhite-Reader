@@ -3,7 +3,7 @@ RedWhite Reader
 
 RedWhite Reader - App to read Spartak Moscow Football Club news that provided by RedWhite.RU. All latest news, tables, scores in your phone or tablet.
 
-To get started -- checkout http://ergoz.github.com/RedWhite-Reader
+To get started -- checkout https://github.com/ergoz/RedWhite-Reader
 
 
 Usage
