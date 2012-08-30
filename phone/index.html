@@ -25,22 +25,27 @@
 			});
 
 			var news-content = "";
+			var title = "";
+			var img = "";
+			var ananos = "";
+			var detail_text = "";
+			var detail_link = "";
+			var pubdate = "";
+			var cur-news-content = "";
+					
 			function xmlParser(xml) {
 				$(xml).find("item").each(function () {
-					var title = $(this).find('title').html();
-					var img = $(this).find('title').html();
-					var ananos = $(this).find('description').html();
-					var detail_text = $(this).find('yandex:full-text').html();
-					var detail_link = $(this).find('link').html();
-					var pubdate = $(this).find('pubDate').html();
-					var cur-news-content = "Title:"+title+" /nAnons"+ananos;
-					news-content = news-content + cur-news-content;
+					title = $(this).find('title').html();
+					img = $(this).find('title').html();
+					ananos = $(this).find('description').html();
+					//detail_text = $(this).find('yandex:full-text').html();
+					detail_link = $(this).find('link').html();
+					pubdate = $(this).find('pubDate').html();
+					cur-news-content = "Title:"+title+" - Anons"+ananos;
+					alert(cur-news-content);
 				});
-			$('ul#news').html(news-content);
 			}
 			
-		
-						
 						
 						
 			$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
