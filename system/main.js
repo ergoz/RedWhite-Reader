@@ -14,17 +14,18 @@ if(navigator.network && navigator.network.connection.type != Connection.NONE) {
 	navigator.notification.vibrate(1);
 	navigator.notification.vibrate(10);
 	}
-}
+} 
 
 function onMenuKeyDown() {
     // Handle the back button
 	navigator.notification.vibrate(1);
-	location.redirect("./options.html");
+	location.redirect("../options.html");
 }
 
 function init() {
-    document.addEventListener("deviceready", deviceReady, true);
-	document.addEventListener("menubutton", onMenuKeyDown, true);
-	
-			alert(window.location);
+    //document.addEventListener("deviceready", deviceReady, false);
+	//document.addEventListener("menubutton", onMenuKeyDown, false);
+	alert(window.location);
 }
+
+alert(window.location);
