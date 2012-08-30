@@ -25,6 +25,6 @@ function onMenuKeyDown() {
 function init() {
 	alert('init 1');
     document.addEventListener("deviceready", deviceReady, false);
-	//document.addEventListener("menubutton", onMenuKeyDown, false);
+	document.addEventListener("menubutton", onMenuKeyDown, false);
 	alert(window.location);
 }
