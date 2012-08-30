@@ -19,10 +19,12 @@ if(navigator.network && navigator.network.connection.type != Connection.NONE) {
 function onMenuKeyDown() {
     // Handle the back button
 	navigator.notification.vibrate(1);
-	location.redirect("../options.html");
+	location.redirect("./options.html");
 }
 
 function init() {
+	alert('init 1');
     document.addEventListener("deviceready", deviceReady, false);
-	document.addEventListener("menubutton", onMenuKeyDown, false);
+	//document.addEventListener("menubutton", onMenuKeyDown, false);
+	alert(window.location);
 }

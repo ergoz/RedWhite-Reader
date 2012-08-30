@@ -17,8 +17,6 @@
     <script>
         $(document).ready(function(){
 		alert('1');
-		init();
-		alert('2');
 		
 			$.ajax({
 				type: "GET",
@@ -27,7 +25,7 @@
 				success: xmlParser
 			});
   
-		alert('3');
+		alert('2');
 			var news-content = "";
 			var title = "";
 			var img = "";
@@ -37,7 +35,7 @@
 			var pubdate = "";
 			var cur-news-content = "";
 				
-		alert('4');	
+		alert('3');	
 			function xmlParser(xml) {
 				$(xml).find("item").each(function () {
 					title = $(this).find('title').html();
@@ -47,7 +45,7 @@
 					detail_link = $(this).find('link').html();
 					pubdate = $(this).find('pubDate').html();
 					cur-news-content = "Title:"+title+" - Anons"+ananos;
-					alert('4.1 content'); 
+					alert('4 content'); 
 				});
 			}
 			
@@ -64,7 +62,7 @@
    </script>
    
 </head> 
-	<body>
+	<body onload="init();">
 		
 			<header data-role="header" data-theme="a" data-position="fixed">  
 					<a href="../index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
