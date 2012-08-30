@@ -24,11 +24,22 @@
 				success: xmlParser
 			});
 
+			var news-content = "";
 			function xmlParser(xml) {
 				$(xml).find("item").each(function () {
-					$('ul#news').html($(this).text());
+					var title = $(this).find('title').html();
+					var img = $(this).find('title').html();
+					var ananos = $(this).find('description').html();
+					var detail_text = $(this).find('yandex:full-text').html();
+					var detail_link = $(this).find('link').html();
+					var pubdate = $(this).find('pubDate').html();
+					var cur-news-content = "Title:"+title+" /nAnons"+ananos;
+					news-content = news-content + cur-news-content;
 				});
+			$('ul#news').html(news-content);
 			}
+			
+		
 						
 						
 						
