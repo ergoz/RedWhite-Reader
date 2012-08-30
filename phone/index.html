@@ -16,6 +16,7 @@
     <script src="../system/main.js"></script>
     <script>
         $(document).ready(function(){
+		init();
 		
 			$.ajax({
 				type: "GET",
@@ -23,7 +24,7 @@
 				dataType: "xml",
 				success: xmlParser
 			});
-
+ 
 			/*var news-content = "";
 			var title = "";
 			var img = "";
@@ -46,7 +47,7 @@
 				});
 			}
 			
-						
+					
 						
 			$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
 				$('ads').html(data);
@@ -56,7 +57,7 @@
    </script>
    
 </head> 
-	<body onload="init();">
+	<body>
 		
 			<header data-role="header" data-theme="a" data-position="fixed">  
 					<a href="../index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
