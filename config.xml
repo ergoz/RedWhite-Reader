@@ -2,7 +2,7 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		= "com.ergoz.rwreader"
-	version 	= "1.0.6">
+	version 	= "1.0.7">
 
 	<name>RedWhite Reader</name>
 
@@ -45,6 +45,13 @@
 	<gap:splash src="/gap/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
 	<gap:splash src="/gap/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
 	<gap:splash src="/gap/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+	<!--
+	xhdpi xlarge screens are at least 960dp x 720dp
+	hdpi large screens are at least 640dp x 480dp
+	mdpi normal screens are at least 470dp x 320dp
+	ldpi small screens are at least 426dp x 320dp
+	-->
+	
 	
 	<gap:splash src="/gap/splash/bb/splash.png" gap:platform="blackberry" />
 	
