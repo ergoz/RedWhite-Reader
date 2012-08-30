@@ -23,9 +23,7 @@ function onMenuKeyDown() {
 }
 
 function init() {
-    //document.addEventListener("deviceready", deviceReady, false);
-	//document.addEventListener("menubutton", onMenuKeyDown, false);
+    document.addEventListener("deviceready", deviceReady, false);
+	document.addEventListener("menubutton", onMenuKeyDown, false);
 	alert(window.location);
 }
-
-alert(window.location);

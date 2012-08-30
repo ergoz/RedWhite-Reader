@@ -28,26 +28,26 @@
 			});
   
 		alert('3');
-			/*var news-content = "";
+			var news-content = "";
 			var title = "";
 			var img = "";
 			var ananos = "";
 			var detail_text = "";
 			var detail_link = "";
 			var pubdate = "";
-			var cur-news-content = "";*/
+			var cur-news-content = "";
 				
 		alert('4');	
 			function xmlParser(xml) {
 				$(xml).find("item").each(function () {
-					//title = $(this).find('title').html();
-					//img = $(this).find('title').html();
-					//ananos = $(this).find('description').html();
-					//detail_text = $(this).find('yandex:full-text').html();
-					//detail_link = $(this).find('link').html();
-					//pubdate = $(this).find('pubDate').html();
-					//cur-news-content = "Title:"+title+" - Anons"+ananos;
-					alert($(this).html());
+					title = $(this).find('title').html();
+					img = $(this).find('title').html();
+					ananos = $(this).find('description').html();
+					detail_text = $(this).find('yandex:full-text').html();
+					detail_link = $(this).find('link').html();
+					pubdate = $(this).find('pubDate').html();
+					cur-news-content = "Title:"+title+" - Anons"+ananos;
+					alert('4.1 content');
 				});
 			}
 			
