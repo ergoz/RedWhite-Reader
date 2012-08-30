@@ -16,7 +16,9 @@
     <script src="../system/main.js"></script>
     <script>
         $(document).ready(function(){
+		alert('1');
 		init();
+		alert('2');
 		
 			$.ajax({
 				type: "GET",
@@ -25,6 +27,7 @@
 				success: xmlParser
 			});
   
+		alert('3');
 			/*var news-content = "";
 			var title = "";
 			var img = "";
@@ -33,7 +36,8 @@
 			var detail_link = "";
 			var pubdate = "";
 			var cur-news-content = "";*/
-					
+				
+		alert('4');	
 			function xmlParser(xml) {
 				$(xml).find("item").each(function () {
 					//title = $(this).find('title').html();
@@ -47,11 +51,14 @@
 				});
 			}
 			
+		alert('5');
 					
 						
 			$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
 				$('ads').html(data);
 			});
+			
+		alert('6');
 					
         });
    </script>
