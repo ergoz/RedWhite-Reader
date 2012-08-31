@@ -5,8 +5,8 @@
 *.pydevproject
 .project
 .metadata
-.apk
-.zip
+*.apk
+*.zip
 bin/
 tmp/
 *.tmp
