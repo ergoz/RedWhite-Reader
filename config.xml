@@ -41,10 +41,10 @@
 	<gap:splash src="/gap/splash/ios/splash-1024-768.png" gap:platform="ios" width="1024" height="768" />
 	<gap:splash src="/gap/splash/ios/splash-768-1024.png" gap:platform="ios" width="768" height="1024" />
 	
-	<gap:splash src="/gap/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="/gap/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="/gap/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="/gap/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+	<gap:splash src="/gap/splash/android/ldpi.9.png" gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="/gap/splash/android/mdpi.9.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="/gap/splash/android/hdpi.9.png" gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="/gap/splash/android/xhdpi.9.png" gap:platform="android" gap:density="xhdpi" />
 	<!--
 	xhdpi xlarge screens are at least 960dp x 720dp
 	hdpi large screens are at least 640dp x 480dp
@@ -60,7 +60,8 @@
 	
 	<feature name="http://api.phonegap.com/1.0/network"/>
 	<feature name="http://api.phonegap.com/1.0/notification"/>
-
+	
+	<preference name="useBrowserHistory" value="false" />
 	<preference name="orientation" value="both" />
 	<preference name="fullscreen" value="true" />
 	<preference name="webviewbounce" value="false" />

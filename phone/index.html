@@ -1,63 +1,69 @@
 <!DOCTYPE html> 
 <html> 
-	<head> 
+<head> 
 	<meta charset="utf-8">
 	
     <title> RedWhiteReader </title> 
 
-    
     <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
     <link rel="stylesheet" href="../system/redwhite.min.css" />
 
-	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
-    <script src="../system/jquery-latest.min.js"></script>
-    <script src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
-   
-    <script src="../system/main.js"></script>
-    <script>
+    <script type="text/javascript" src="../system/jquery-latest.min.js"></script>						
+    <script type="text/javascript" src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>				
+	<script type="text/javascript" src="../cordova.js"></script>
+	
+	<script type="text/javascript">
+	
+	
+function init() {
+    document.addEventListener("deviceready", deviceReady, false);
+}
+
+function deviceReady() {
+	alert('ready');
+	document.addEventListener("backbutton", backKeyDown, true);
+	document.addEventListener("menubutton", onMenuKeyDown, true);
+}
+
+
+function onMenuKeyDown() {
+navigator.notification.beep(1);
+	alert('pressed menu');
+}
+
+function onBackKeyDown() {
+navigator.notification.beep(1);
+	alert('back pressed');
+}
+	
         $(document).ready(function(){
-		alert('1');
+		var DB = window.localStorage;
+		var ads = DB.getItem("ads");
 		
+	
 			$.ajax({
 				type: "GET",
-				url: "http://redwhite.ru/news/spnews/rss/",
+				url: "http://ergoz.ru/rwreader/rw-rss.xml",
 				dataType: "xml",
-				success: xmlParser
+				success: xmlParser,
+				error:xmlError
 			});
-  
-		alert('2');
-			var news-content = "";
-			var title = "";
-			var img = "";
-			var ananos = "";
-			var detail_text = "";
-			var detail_link = "";
-			var pubdate = "";
-			var cur-news-content = "";
-				
-		alert('3');	
-			function xmlParser(xml) {
-				$(xml).find("item").each(function () {
-					title = $(this).find('title').html();
-					img = $(this).find('title').html();
-					ananos = $(this).find('description').html();
-					detail_text = $(this).find('yandex:full-text').html();
-					detail_link = $(this).find('link').html();
-					pubdate = $(this).find('pubDate').html();
-					cur-news-content = "Title:"+title+" - Anons"+ananos;
-					alert('4 content'); 
-				});
-			}
-			
-		alert('5');
-					
+		
+					function xmlParser(xml) {
+							$(xml).find("item").each(function () {					
+								$("#rss-news").append('<li><a href="./detail.html?content='+$(this).find("yandex:full-text").text()+'&title='+$(this).find("title").text()+'&pubdate='+$(this).find("pubDate").text() + '">' + $(this).find("title").text() + '</a></li>');
+							});
+							$("#rss-news").listview('refresh');
+							alert('<li><a href="./detail.html?content='+$(this).find("yandex:full-text").text()+'&title='+$(this).find("title").text()+'&pubdate='+$(this).find("pubDate").text() + '">' + $(this).find("title").text() + '</a></li>');
+					}
 						
-			$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
-				$('ads').html(data);
-			});
+					function xmlError(xml) {
+						alert("Error Loading News"); 
+					}
+				
 			
-		alert('6'); 
-					
+			$('ads').html(ads);
+			
         });
    </script>
    
@@ -65,7 +71,7 @@
 	<body onload="init();">
 		
 			<header data-role="header" data-theme="a" data-position="fixed">  
-					<a href="../index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
+					<a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
 					<h1>Red White Reader</h1>
 					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
 					<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
@@ -75,33 +81,24 @@
 						<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
 							<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
 							<center>
-								<p><center><ads></ads></center></p>
+								<div style="margin-left:-15px;"><ads></ads></div>
 								<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>    
 								<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
 							</center>
 						</div>
 					</div>	
-					
-					<div data-role="navbar">
-					<center>
-						<ul>
-						<li><a href="#">Новости</a></li>
-						<li><a href="#">Twitter FCSM</a></li>
-						</ul>
-					</center>
-					</div>
 			</header>
 		
 		
 			<div data-role="content" data-theme="a" >
-				<ul id="news" data-role="listview">  	
-				
+				<ul id="rss-news" data-role="listview">  	
 				</ul>
 			</div>
 			
 			
 		<footer data-role="footer" data-position="fixed">  
 				<style>
+				#rss-news {font-size: 0.75em !important;}
 				.nav-footer .ui-btn-text {font-size: 0.75em !important;}
 				.nav-footer .ui-btn .ui-btn-inner { padding-top: 40px !important; }
 				.nav-footer .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
@@ -115,11 +112,11 @@
 				<div data-role="navbar" class="nav-footer" data-iconpos="top">
 				<center>
 					<ul>
-						<li><a href="#" id="news" data-icon="custom">Новости</a></li>
-						<li><a href="#" id="charts" data-icon="custom">Таблицы</a></li>
-						<li><a href="#" id="youtube" data-icon="custom">Youtube</a></li>
-						<li><a href="#" id="online" data-icon="custom">Online</a></li>
-						<li><a href="#" id="calendar" data-icon="custom">Расписание</a></li>
+						<li><a href="#" onclick="alert('Новости');" id="news" data-icon="custom">Новости</a></li>
+						<li><a href="#" onclick="alert('Таблицы');" id="charts" data-icon="custom">Таблицы</a></li>
+						<li><a href="#" onclick="alert('Youtube');" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="#" onclick="alert('Online');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#" onclick="alert('Расписание');" id="calendar" data-icon="custom">Расписание</a></li>
 					</ul>
 				</center>
 				</div>

@@ -7,24 +7,24 @@ function vibrate() {
 }
 
 function deviceReady() {
-if(navigator.network && navigator.network.connection.type != Connection.NONE) {
-	navigator.notification.vibrate(1);
-	} else {
-	beep();
-	navigator.notification.vibrate(1);
-	navigator.notification.vibrate(10);
-	}
-} 
+		//когда телефон полностью готов и страница прогрузилась
+	//navigator.notification.alert('ready');
+}
 
 function onMenuKeyDown() {
-    // Handle the back button
-	navigator.notification.vibrate(1);
-	location.redirect("./options.html");
+	//navigator.notification.vibrate(1);
+	//beep();
+	//navigator.notification.alert('pressed menu');
+}
+
+function onBackKeyDown() {
+	//navigator.notification.vibrate(1);
+	//beep();
+	alert('back pressed');
 }
 
 function init() {
-	//alert('init 1');
     document.addEventListener("deviceready", deviceReady, false);
 	document.addEventListener("menubutton", onMenuKeyDown, false);
-	//alert(window.location);
+	document.addEventListener("backbutton", onBackKeyDown, false);
 }
