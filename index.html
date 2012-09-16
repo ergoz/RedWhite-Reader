@@ -13,21 +13,24 @@
 	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
 	
 	<script>
+	$(document).ready(function(){	
+		
 		var DB = window.localStorage;
 
-	$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
-		DB.setItem("ads", data);
-	});
+		$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
+			DB.setItem("ads", data);
+		});
 
 	
 		function GetSystem() {
 			Systype = DB.getItem("systype");
 			if(Systype == "phone"){
-				$.mobile.changePage( "./phone/index.html", {transition: "fade", reverse: false, changeHash: false});
+				location.replace("./phone/index.html");
+				//window.location.href = "http://www.softtime.ru";
 			}
-				
 			if(Systype == "tablet"){
-				$.mobile.changePage( "./tablet/index.html", {transition: "fade", reverse: false, changeHash: false});
+				location.replace("./tablet/index.html");
+				//window.location.href = "http://www.softtime.ru";
 			}
 		}
 				
@@ -39,10 +42,8 @@
 			DB.setItem("systype", "phone");
 		}
 		
-		$(document).bind('pageinit', function(){
-			GetSystem();
-		});
-		
+			GetSystem();		
+	});
    </script>
    
 </head> 

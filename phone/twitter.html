@@ -22,7 +22,7 @@
 	
 			$.ajax({
 				type: "GET",
-				url: "http://ergoz.ru/rwreader/rw-rss.xml",
+				url: "https://twitter.com/statuses/user_timeline/fcsm_official.rss",
 				dataType: "xml",
 				success: xmlParser,
 				error:xmlError
@@ -36,10 +36,8 @@
 					var litecontent = 0;
 					var fullcontent = "";
 						$(xml).find("item").each(function () {							
-							litecontent = '<li><a href="./detail.html?nid='+ counter + '" rel="external">' + $(this).find("title").text() + '</a></li>';
+							litecontent = '<li><h1>' + $(this).find("title").text() + '<h1><p>' + $(this).find("pubDate").text() + '</p></li>';
 							$("#rss-news").append(litecontent);
-							fullcontent = fullcontent + '<div id="nid'+counter+'">' + $(this).find("yadetail").text() + '</div-last>';
-							counter=counter+1;
 						});
 						DB.setItem('fullcontent', fullcontent);
 						$("#rss-news").listview('refresh');
@@ -77,8 +75,8 @@
 					<div data-role="navbar">
 					<center>
 						<ul>
-							<li><a href="index.html">Новости</a></li>
-							<li data-theme="c"><a href="twitter.html">Twitter FCSM</a></li>
+						<li data-theme="c"><a href="index.html">Новости</a></li>
+						<li><a href="twitter.html">Twitter FCSM</a></li>
 						</ul>
 					</center>
 					</div>
