@@ -18,7 +18,7 @@
 		var ads = DB.getItem("ads");
 		$('ads').html(ads);
 			
-	alert('1');
+	alert('twitter');
 	
 			$.ajax({
 				type: "GET",
@@ -28,27 +28,20 @@
 				error:xmlError
 			});
 		
-	
-	alert('2');
-	
 				function xmlParser(xml) {
 					var counter = 0;
 					var litecontent = 0;
 					var fullcontent = "";
 						$(xml).find("item").each(function () {							
 							litecontent = '<li><h1>' + $(this).find("title").text() + '<h1><p>' + $(this).find("pubDate").text() + '</p></li>';
-							$("#rss-news").append(litecontent);
+							$("#tw-news").append(litecontent);
 						});
-						DB.setItem('fullcontent', fullcontent);
-						$("#rss-news").listview('refresh');
+						$("#tw-news").listview('refresh');
 					}
 
-	alert('3');	
-	
 					function xmlError(xml) {
 						alert("Error Loading News"); 
 					}
-	alert('4');	
         });
    </script>
    
@@ -75,8 +68,8 @@
 					<div data-role="navbar">
 					<center>
 						<ul>
-						<li data-theme="c"><a href="index.html">Новости</a></li>
-						<li><a href="twitter.html">Twitter FCSM</a></li>
+						<li data-theme="c"><a href="./index.html">Новости</a></li>
+						<li><a href="./twitter.html">Twitter FCSM</a></li>
 						</ul>
 					</center>
 					</div>
@@ -84,14 +77,14 @@
 		
 		
 			<div data-role="content" data-theme="a" >
-				<ul id="rss-news" data-role="listview">  	
+				<ul id="tw-news" data-role="listview">  	
 				</ul>
 			</div>
 			
 			
 		<footer data-role="footer" data-position="fixed">  
 				<style>
-				#rss-news {font-size: 0.75em !important;}
+				#tw-news {font-size: 0.75em !important;}
 				.nav-footer .ui-btn-text {font-size: 0.75em !important;}
 				.nav-footer .ui-btn .ui-btn-inner { padding-top: 40px !important; }
 				.nav-footer .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }

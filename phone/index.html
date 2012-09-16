@@ -17,8 +17,6 @@
 		var DB = window.localStorage;
 		var ads = DB.getItem("ads");
 		$('ads').html(ads);
-			
-	alert('1');
 	
 			$.ajax({
 				type: "GET",
@@ -27,9 +25,6 @@
 				success: xmlParser,
 				error:xmlError
 			});
-		
-	
-	alert('2');
 	
 				function xmlParser(xml) {
 					var counter = 0;
@@ -44,13 +39,10 @@
 						DB.setItem('fullcontent', fullcontent);
 						$("#rss-news").listview('refresh');
 					}
-
-	alert('3');	
 	
 					function xmlError(xml) {
 						alert("Error Loading News"); 
 					}
-	alert('4');	
         });
    </script>
    
