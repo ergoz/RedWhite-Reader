@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-	<meta charset="utf-8">
+	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	
     <title> RedWhiteReader </title> 
 
@@ -13,33 +13,9 @@
 	<script type="text/javascript" src="../cordova.js"></script>
 	
 	<script type="text/javascript">
-	
-	
-function init() {
-    document.addEventListener("deviceready", deviceReady, false);
-}
-
-function deviceReady() {
-	alert('ready');
-	document.addEventListener("backbutton", backKeyDown, true);
-	document.addEventListener("menubutton", onMenuKeyDown, true);
-}
-
-
-function onMenuKeyDown() {
-navigator.notification.beep(1);
-	alert('pressed menu');
-}
-
-function onBackKeyDown() {
-navigator.notification.beep(1);
-	alert('back pressed');
-}
-	
-        $(document).ready(function(){
+    $(document).ready(function(){
 		var DB = window.localStorage;
 		var ads = DB.getItem("ads");
-		
 	
 			$.ajax({
 				type: "GET",
@@ -49,21 +25,25 @@ navigator.notification.beep(1);
 				error:xmlError
 			});
 		
-					function xmlParser(xml) {
-							$(xml).find("item").each(function () {					
-								$("#rss-news").append('<li><a href="./detail.html?content='+$(this).find("yandex:full-text").text()+'&title='+$(this).find("title").text()+'&pubdate='+$(this).find("pubDate").text() + '">' + $(this).find("title").text() + '</a></li>');
-							});
-							$("#rss-news").listview('refresh');
-							alert('<li><a href="./detail.html?content='+$(this).find("yandex:full-text").text()+'&title='+$(this).find("title").text()+'&pubdate='+$(this).find("pubDate").text() + '">' + $(this).find("title").text() + '</a></li>');
+				function xmlParser(xml) {
+					var counter = 0;
+					var litecontent = 0;
+					var fullcontent = "";
+						$(xml).find("item").each(function () {							
+							litecontent = '<li><a href="./detail.html?nid='+ counter + '" rel="external">' + $(this).find("title").text() + '</a></li>';
+							$("#rss-news").append(litecontent);
+							fullcontent = fullcontent + '<div id="nid'+counter+'">' + $(this).find("yadetail").text() + '</div-last>';
+							counter=counter+1;
+						});
+						DB.setItem('fullcontent', fullcontent);
+						$("#rss-news").listview('refresh');
 					}
 						
 					function xmlError(xml) {
 						alert("Error Loading News"); 
 					}
 				
-			
 			$('ads').html(ads);
-			
         });
    </script>
    
@@ -87,6 +67,14 @@ navigator.notification.beep(1);
 							</center>
 						</div>
 					</div>	
+					<div data-role="navbar">
+					<center>
+						<ul>
+						<li data-theme="c"><a href="#" onclick="alert('Новости');">Новости</a></li>
+						<li><a href="#" onclick="alert('Twitter FCSM');">Twitter FCSM</a></li>
+						</ul>
+					</center>
+					</div>
 			</header>
 		
 		
@@ -112,11 +100,11 @@ navigator.notification.beep(1);
 				<div data-role="navbar" class="nav-footer" data-iconpos="top">
 				<center>
 					<ul>
-						<li><a href="#" onclick="alert('Новости');" id="news" data-icon="custom">Новости</a></li>
-						<li><a href="#" onclick="alert('Таблицы');" id="charts" data-icon="custom">Таблицы</a></li>
-						<li><a href="#" onclick="alert('Youtube');" id="youtube" data-icon="custom">Youtube</a></li>
-						<li><a href="#" onclick="alert('Online');" id="online" data-icon="custom">Online</a></li>
-						<li><a href="#" onclick="alert('Расписание');" id="calendar" data-icon="custom">Расписание</a></li>
+						<li><a href="#" onclick="alert('Новости');" id="news" data-icon="custom" >Новости</a></li>
+						<li><a href="#" onclick="alert('Таблицы');" id="charts" data-icon="custom" >Таблицы</a></li>
+						<li><a href="#" onclick="alert('Youtube');" id="youtube" data-icon="custom" >Youtube</a></li>
+						<li><a href="#" onclick="alert('Online');" id="online" data-icon="custom" >Online</a></li>
+						<li><a href="#" onclick="alert('Расписание');" id="calendar" data-icon="custom" >Расписание</a></li>
 					</ul>
 				</center>
 				</div>

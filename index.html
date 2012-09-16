@@ -14,59 +14,35 @@
 	
 	<script>
 		var DB = window.localStorage;
-		
-		function checkConnection() {
-    var networkState = navigator.network.connection.type;
 
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.NONE]     = 'No network connection';
-
-    alert('Connection type: ' + states[networkState]);
-}
-
-checkConnection();
-		/*
-if(checkConnection() == "NONE") {
-	alert("You are offline");
-} else {*/
-	$.get('http://ergoz.ru/gads/red_white_reader.php', function(data) {
+	$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
 		DB.setItem("ads", data);
 	});
-/*}*/
 
 	
-		
-			
-		
 		function GetSystem() {
 			Systype = DB.getItem("systype");
 			if(Systype == "phone"){
-				location.replace("./phone/index.html");
+				$.mobile.changePage( "./phone/index.html", {transition: "fade", reverse: false, changeHash: false});
 			}
 				
 			if(Systype == "tablet"){
-					location.replace("./tablet/index.html");
+				$.mobile.changePage( "./tablet/index.html", {transition: "fade", reverse: false, changeHash: false});
 			}
-			
 		}
 				
 		function SetPadSystem() {
 			DB.setItem("systype", "tablet");
-			$.mobile.changePage("./tablet/index.html");
 		}
 				
 		function SetPhoneSystem() {
 			DB.setItem("systype", "phone");
-			$.mobile.changePage("./phone/index.html");
 		}
 		
-		GetSystem();
+		$(document).bind('pageinit', function(){
+			GetSystem();
+		});
+		
    </script>
    
 </head> 
