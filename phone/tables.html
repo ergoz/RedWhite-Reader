@@ -15,20 +15,24 @@
 	
 	<script type="text/javascript">
     $(document).ready(function(){
+	$('#table').load('http://russianfootballtable.ru/ #scores');
+	//$('#table').load('http://www.soccer.ru/russia/table/ #maintable');
+	
+	
 		var DB = window.localStorage;
 		var ads = DB.getItem("ads");
-		var twcontent = DB.getItem("twcontent");
+		//var tablescontent = DB.getItem("tables");
 		$('ads').html(ads);
-		$('#tw-news').html(twcontent);
-		$("#tw-news").listview('refresh');
+		//$('#table').html(tablescontent);
+		//$("#table").listview('refresh');
         });
    </script>
    
 </head> 
 	<body onload="init();">
 		
-			<header data-role="header" data-theme="a" data-position="fixed">  
-			<a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
+			<header data-role="header" data-theme="a" data-position="fixed">
+				<a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
 					<h1>Red White Reader</h1>
 					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
 					<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
@@ -43,29 +47,22 @@
 								<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
 							</center>
 						</div>
-					</div>	
-				<div data-role="navbar">
-					<center>
-						<ul>
-						<li data-theme="c"><a href="./index.html" data-ajax="false">Новости</a></li>
-						<li><a href="#">Twitter FCSM</a></li>
-						</ul>
-					</center>
-					</div>
+					</div>				
 			</header>
 		
 		
-			<div data-role="content" data-theme="a" >
-				<ul id="tw-news" data-role="listview">  	
-				</ul>
-			</div>
+			<content data-role="content" data-theme="a" >
+				<div id="table">  
+				
+				</div>
+			</content>
 			
 			
-		<footer data-role="footer" data-position="fixed">
+		<footer data-role="footer" data-position="fixed">	
 				<div data-role="navbar" class="nav-footer" data-iconpos="top">
 				<center>
 					<ul>
-					<li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
+						<li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
 						<li><a href="./tables.html" id="charts" data-icon="custom"  data-ajax="false">Таблицы</a></li>
 						<li><a href="#" onclick="alert('Youtube in dev');" id="youtube" data-icon="custom">Youtube</a></li>
 						<li><a href="#" onclick="alert('Online in dev');" id="online" data-icon="custom">Online</a></li>

@@ -15,16 +15,15 @@
 	<script type="text/javascript" charset="utf-8" src="./system/jquery.eds.progressbar.js"></script>
 	
 	<script>
-	$(document).ready(function(){	
-		
-		var DB = window.localStorage;
-		
-		set_progress("0");
-		$(".progress-console").html("Проверка конфигурации");		
+	
+	
+$(document).ready(function(){	
+
+		var DB = window.localStorage;	
 		DB.setItem('litenews', "");
 		DB.setItem('fullnews', "");
 		DB.setItem('twcontent', "");
-		
+		DB.setItem('tables', "");
 		
 		function is_system() {
 			var System = DB.getItem("systype");
@@ -37,7 +36,7 @@
 			}
 			return status;
 		}
-	
+
 		function GetSystem() {
 			Systype = DB.getItem("systype");
 			if(Systype == "phone"){
@@ -46,22 +45,18 @@
 			if(Systype == "tablet"){
 				location.replace("./tablet/index.html");
 			}
-		}
-	
-		set_progress("5");
-		$(".progress-console").html("Проверка конфигурации завершена");		
-
+		}	
 		
-		function load_content() {	
-		set_progress("10");	
-		$(".progress-console").html("Загрузка новостей");	
 		
+		
+		function load_content() {
 		<!-- ГРУЗИМ НОВОСТИ -->
 			$.ajax({
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/rw-rss.xml",
 				dataType: "xml",
-				timeout: 30000,
+				timeout: 15000,
+				async: false,
 				crossDomain: true,
 				success: xmlParser,
 				error:xmlError
@@ -77,14 +72,14 @@
 							counter=counter+1;
 						});
 						DB.setItem('litenews', litenews);
-						DB.setItem('fullnews', fullnews);
+						DB.setItem('fullnews', fullnews);	
+						set_progress("30");
+						$(".progress-console").html("Новости загружены");	
 					}
 	
 					function xmlError(xml) {
 						alert("Error Loading News"); 
 					}
-		set_progress("30");
-		$(".progress-console").html("Загрузка twitter ленты");	
 		
 		<!-- ГРУЗИМ ТВИТТЕР -->
 		$.ajax({
@@ -93,6 +88,7 @@
 				dataType: "xml",
 				timeout: 30000,
 				crossDomain: true,
+				async: false,
 				success: TWxmlParser,
 				error: TWxmlError
 			});
@@ -101,16 +97,16 @@
 					var counter = 0;
 					var twcontent = "";
 						$(xml).find("item").each(function () {							
-							twcontent = twcontent + '<li><h1>' + $(this).find("title").text() + '<h1><p>' + $(this).find("pubDate").text() + '</p></li>';
+							twcontent = twcontent + '<li><a href="' + $(this).find("link").text() + '"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("pubDate").text() + '</p></a></li>';
 						});
 						DB.setItem('twcontent', twcontent);
+						set_progress("40");			
+						$(".progress-console").html("Twitter лента загружена");	
 					}
 
 				function TWxmlError(xml) {
-						alert("Error Loading Twitter: "+textStatus); 
+						alert("Error Loading Twitter"); 
 				}		
-		set_progress("40");			
-		$(".progress-console").html("Загрузка таблиц чемпионата России");	
 
 		<!-- ГРУЗИМ ТАБЛИЦЫ -->
 		set_progress("50");
@@ -130,38 +126,43 @@
 
 		<!-- ГРУЗИМ РЕКЛАМУ -->
 		$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
-			DB.setItem("ads", data);
+			DB.setItem("ads", data);	
 		});
 		set_progress("90");
-		$(".progress-console").html("Загрузка дополнительного контента");	
+		$(".progress-console").html("Реклама загружена");
 
 		<!-- ГРУЗИМ ЕЩЁ ЧТО-ТО -->
 		set_progress("100");
 		$(".progress-console").html("Загрузка завершена");	
-
-		GetSystem();
 		}
-				
+		
+
+		
 		function SetPadSystem() {
 			DB.setItem("systype", "tablet");
-			alert(DB.getItem("systype"));
 			GetSystem();
-			alert(DB.getItem("systype"));
 		}
+		
+		
 				
 		function SetPhoneSystem() {
 			DB.setItem("systype", "phone");
 			GetSystem();
-			alert(DB.getItem("systype"));
 		}	
 
-if(is_system()) {
-load_content();
-} else {
-load_content();
-}			
-			
-	});
+		
+	if(is_system()) {
+		set_progress("5");
+		$(".progress-console").html("Проверка конфигурации");		
+		load_content();
+		GetSystem();
+	} else {
+		set_progress("5");
+		$(".progress-console").html("Проверка конфигурации");		
+		$(".first-run").css("display","block");
+		load_content();
+	}						
+});
    </script>
    
 </head> 
@@ -210,13 +211,12 @@ load_content();
 					<center>
 					<h3>Загрузка контента</h3>
 					<div class="progress-console" style="font-size: 0.70em !important;">Загрузка контента</div>
-					<div class="progressbar"><div></div><span>0%</span></div>				
 					</center>
+					<div class="progressbar"><div></div><span>0%</span></div>				
 				</div>
 	
-				<div class="first-run"><center>
+				<div class="first-run" style="display:none;"><center>
 					<h3>Первый запуск приложения</h3>
-					
 					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства. 
 					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет. 
 					Однако вы можете изменить тип устройства вы сможете изменить в меню настроек.
@@ -231,13 +231,7 @@ load_content();
 			
 			
 			<footer data-role="footer" data-position="fixed">  
-				<div data-role="navbar" class="nav-footer" data-iconpos="top">
-				<center>
-					<ul>
-						<li><a href="./options.html" id="configs" data-icon="gear">Настройки</a></li>
-					</ul>
-				</center>
-				</div>
+				<div style="margin-left:-15px;"><ads></ads></div>
 			</footer>
 		
 	</body>

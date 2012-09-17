@@ -22,7 +22,7 @@
 				
 			var nID = $.getUrlVar('nid');
 			
-			contentfull = DB.getItem('fullcontent');
+			contentfull = DB.getItem('fullnews');
 			
 			var content = contentfull.split('<div id="nid'+nID+'">');
 			var result = content[1].split('</div-last>');
