@@ -16,34 +16,11 @@
     $(document).ready(function(){
 		var DB = window.localStorage;
 		var ads = DB.getItem("ads");
+		var litenews = DB.getItem("litenews");
 		$('ads').html(ads);
-	
-			$.ajax({
-				type: "GET",
-				url: "http://ergoz.ru/rwreader/rw-rss.xml",
-				dataType: "xml",
-				success: xmlParser,
-				error:xmlError
-			});
-	
-				function xmlParser(xml) {
-					var counter = 0;
-					var litecontent = 0;
-					var fullcontent = "";
-						$(xml).find("item").each(function () {							
-							litecontent = '<li><a href="./detail.html?nid='+ counter + '" rel="external">' + $(this).find("title").text() + '</a></li>';
-							$("#rss-news").append(litecontent);
-							fullcontent = fullcontent + '<div id="nid'+counter+'">' + $(this).find("yadetail").text() + '</div-last>';
-							counter=counter+1;
-						});
-						DB.setItem('fullcontent', fullcontent);
-						$("#rss-news").listview('refresh');
-					}
-	
-					function xmlError(xml) {
-						alert("Error Loading News"); 
-					}
-        });
+		$('#rss-news').html(litenews);
+		$("#rss-news").listview('refresh');
+	});
    </script>
    
 </head> 
@@ -69,8 +46,8 @@
 					<div data-role="navbar">
 					<center>
 						<ul>
-							<li><a href="index.html">Новости</a></li>
-							<li data-theme="c"><a href="twitter.html">Twitter FCSM</a></li>
+							<li><a href="#">Новости</a></li>
+							<li data-theme="c"><a href="./twitter.html" data-ajax="false">Twitter FCSM</a></li>
 						</ul>
 					</center>
 					</div>

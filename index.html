@@ -7,42 +7,160 @@
 
     <link rel="stylesheet" href="./system/jquery.mobile-1.2.0-alpha.1.min.css" />
     <link rel="stylesheet" href="./system/redwhite.min.css" />
+    <link rel="stylesheet" href="./system/style.css" />
 
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./system/jquery.eds.progressbar.js"></script>
 	
 	<script>
 	$(document).ready(function(){	
 		
 		var DB = window.localStorage;
-
-		$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
-			DB.setItem("ads", data);
-		});
-
+		
+		set_progress("0");
+		$(".progress-console").html("Проверка конфигурации");		
+		DB.setItem('litenews', "");
+		DB.setItem('fullnews', "");
+		DB.setItem('twcontent', "");
+		
+		
+		function is_system() {
+			var System = DB.getItem("systype");
+			var status = false;
+			if(System == "phone"){
+				status = true;
+			}
+			if(System == "tablet"){
+				status = true;
+			}
+			return status;
+		}
 	
 		function GetSystem() {
 			Systype = DB.getItem("systype");
 			if(Systype == "phone"){
 				location.replace("./phone/index.html");
-				//window.location.href = "http://www.softtime.ru";
 			}
 			if(Systype == "tablet"){
 				location.replace("./tablet/index.html");
-				//window.location.href = "http://www.softtime.ru";
 			}
+		}
+	
+		set_progress("5");
+		$(".progress-console").html("Проверка конфигурации завершена");		
+
+		
+		function load_content() {	
+		set_progress("10");	
+		$(".progress-console").html("Загрузка новостей");	
+		
+		<!-- ГРУЗИМ НОВОСТИ -->
+			$.ajax({
+				type: "GET",
+				url: "http://ergoz.ru/rwreader/rw-rss.xml",
+				dataType: "xml",
+				timeout: 30000,
+				crossDomain: true,
+				success: xmlParser,
+				error:xmlError
+			});
+	
+				function xmlParser(xml) {
+					var counter = 0;
+					var litenews = "";
+					var fullnews = "";
+						$(xml).find("item").each(function () {							
+							litenews = litenews + '<li><a href="./detail.html?nid='+ counter + '" data-ajax="false">' + $(this).find("title").text() + '</a></li>';
+							fullnews = fullnews + '<div id="nid'+counter+'">' + $(this).find("yadetail").text() + '</div-last>';
+							counter=counter+1;
+						});
+						DB.setItem('litenews', litenews);
+						DB.setItem('fullnews', fullnews);
+					}
+	
+					function xmlError(xml) {
+						alert("Error Loading News"); 
+					}
+		set_progress("30");
+		$(".progress-console").html("Загрузка twitter ленты");	
+		
+		<!-- ГРУЗИМ ТВИТТЕР -->
+		$.ajax({
+				type: "GET",
+				url: "https://twitter.com/statuses/user_timeline/fcsm_official.rss",
+				dataType: "xml",
+				timeout: 30000,
+				crossDomain: true,
+				success: TWxmlParser,
+				error: TWxmlError
+			});
+		
+				function TWxmlParser(xml) {
+					var counter = 0;
+					var twcontent = "";
+						$(xml).find("item").each(function () {							
+							twcontent = twcontent + '<li><h1>' + $(this).find("title").text() + '<h1><p>' + $(this).find("pubDate").text() + '</p></li>';
+						});
+						DB.setItem('twcontent', twcontent);
+					}
+
+				function TWxmlError(xml) {
+						alert("Error Loading Twitter: "+textStatus); 
+				}		
+		set_progress("40");			
+		$(".progress-console").html("Загрузка таблиц чемпионата России");	
+
+		<!-- ГРУЗИМ ТАБЛИЦЫ -->
+		set_progress("50");
+		$(".progress-console").html("Загрузка таблиц чемпионата России");	
+
+		<!-- ГРУЗИМ YOUTUBE -->
+		set_progress("60");
+		$(".progress-console").html("Загрузка таблиц чемпионата России");	
+
+		<!-- ГРУЗИМ ТРАНСЛЯЦИИ -->
+		set_progress("70");
+		$(".progress-console").html("Загрузка таблиц чемпионата России");	
+
+		<!-- ГРУЗИМ РАСПИСАНИЕ -->
+		set_progress("80");
+		$(".progress-console").html("Загрузка рекламы");	
+
+		<!-- ГРУЗИМ РЕКЛАМУ -->
+		$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
+			DB.setItem("ads", data);
+		});
+		set_progress("90");
+		$(".progress-console").html("Загрузка дополнительного контента");	
+
+		<!-- ГРУЗИМ ЕЩЁ ЧТО-ТО -->
+		set_progress("100");
+		$(".progress-console").html("Загрузка завершена");	
+
+		GetSystem();
 		}
 				
 		function SetPadSystem() {
 			DB.setItem("systype", "tablet");
+			alert(DB.getItem("systype"));
+			GetSystem();
+			alert(DB.getItem("systype"));
 		}
 				
 		function SetPhoneSystem() {
 			DB.setItem("systype", "phone");
-		}
-		
-			GetSystem();		
+			GetSystem();
+			alert(DB.getItem("systype"));
+		}	
+
+if(is_system()) {
+load_content();
+} else {
+load_content();
+}			
+			
 	});
    </script>
    
@@ -87,7 +205,16 @@
 					}
 				</style>
 	
-				<center>
+	
+				<div class="loading-content">
+					<center>
+					<h3>Загрузка контента</h3>
+					<div class="progress-console" style="font-size: 0.70em !important;">Загрузка контента</div>
+					<div class="progressbar"><div></div><span>0%</span></div>				
+					</center>
+				</div>
+	
+				<div class="first-run"><center>
 					<h3>Первый запуск приложения</h3>
 					
 					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства. 
@@ -99,6 +226,7 @@
 					
 					<a onclick="SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
 				</center>
+				</div>
 			</div>
 			
 			
