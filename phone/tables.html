@@ -15,16 +15,12 @@
 	
 	<script type="text/javascript">
     $(document).ready(function(){
-	$('#table').load('http://russianfootballtable.ru/ #scores');
-	//$('#table').load('http://www.soccer.ru/russia/table/ #maintable');
-	
-	
 		var DB = window.localStorage;
 		var ads = DB.getItem("ads");
-		//var tablescontent = DB.getItem("tables");
+		var tablescontent = DB.getItem("main-table");
 		$('ads').html(ads);
-		//$('#table').html(tablescontent);
-		//$("#table").listview('refresh');
+		$('#table').html(tablescontent);
+		$("#table").listview('refresh');
         });
    </script>
    
@@ -64,9 +60,9 @@
 					<ul>
 						<li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
 						<li><a href="./tables.html" id="charts" data-icon="custom"  data-ajax="false">Таблицы</a></li>
-						<li><a href="#" onclick="alert('Youtube in dev');" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="./youtube.html" onclick="alert('Youtube in dev');" id="youtube" data-icon="custom">Youtube</a></li>
 						<li><a href="#" onclick="alert('Online in dev');" id="online" data-icon="custom">Online</a></li>
-						<li><a href="#" onclick="alert('Расписание in dev');" id="calendar" data-icon="custom">Расписание</a></li>
+						<li><a href="./calendar.html" onclick="alert('Расписание in dev');" id="calendar" data-icon="custom">Расписание</a></li>
 					</ul>
 				</center>
 				</div></footer>

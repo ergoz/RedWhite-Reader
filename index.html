@@ -20,10 +20,6 @@
 $(document).ready(function(){	
 
 		var DB = window.localStorage;	
-		DB.setItem('litenews', "");
-		DB.setItem('fullnews', "");
-		DB.setItem('twcontent', "");
-		DB.setItem('tables', "");
 		
 		function is_system() {
 			var System = DB.getItem("systype");
@@ -45,11 +41,17 @@ $(document).ready(function(){
 			if(Systype == "tablet"){
 				location.replace("./tablet/index.html");
 			}
-		}	
+		}		
 		
 		
 		
 		function load_content() {
+		
+		DB.setItem('litenews', "");
+		DB.setItem('fullnews', "");
+		DB.setItem('twcontent', "");
+		DB.setItem('main-table', "");
+		
 		<!-- ГРУЗИМ НОВОСТИ -->
 			$.ajax({
 				type: "GET",
@@ -72,21 +74,21 @@ $(document).ready(function(){
 							counter=counter+1;
 						});
 						DB.setItem('litenews', litenews);
-						DB.setItem('fullnews', fullnews);	
-						set_progress("30");
-						$(".progress-console").html("Новости загружены");	
+						DB.setItem('fullnews', fullnews);		
 					}
 	
 					function xmlError(xml) {
 						alert("Error Loading News"); 
 					}
+					set_progress("30");
+					$(".progress-console").html("Новости загружены");
 		
 		<!-- ГРУЗИМ ТВИТТЕР -->
 		$.ajax({
 				type: "GET",
-				url: "https://twitter.com/statuses/user_timeline/fcsm_official.rss",
+				url: "http://ergoz.ru/rwreader/tw-rss.xml",
 				dataType: "xml",
-				timeout: 30000,
+				timeout: 15000,
 				crossDomain: true,
 				async: false,
 				success: TWxmlParser,
@@ -100,25 +102,55 @@ $(document).ready(function(){
 							twcontent = twcontent + '<li><a href="' + $(this).find("link").text() + '"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("pubDate").text() + '</p></a></li>';
 						});
 						DB.setItem('twcontent', twcontent);
-						set_progress("40");			
-						$(".progress-console").html("Twitter лента загружена");	
 					}
 
 				function TWxmlError(xml) {
 						alert("Error Loading Twitter"); 
 				}		
+				set_progress("40");			
+				$(".progress-console").html("Twitter лента загружена");	
 
 		<!-- ГРУЗИМ ТАБЛИЦЫ -->
+		$.get('http://ergoz.ru/rwreader/content.php?ask=table-tour', function(data) {
+			DB.setItem("main-table", data);	
+		});
 		set_progress("50");
 		$(".progress-console").html("Загрузка таблиц чемпионата России");	
 
 		<!-- ГРУЗИМ YOUTUBE -->
+			$.ajax({
+				type: "GET",
+				url: "http://ergoz.ru/rwreader/yt-rss.xml",
+				dataType: "xml",
+				timeout: 30000,
+				crossDomain: true,
+				async: false,
+				success: YTxmlParser,
+				error: YTxmlError
+			});
+		
+				function YTxmlParser(xml) {
+					var counter = 0;
+					var twcontent = "";
+					var twfullcontent = "";
+						$(xml).find("item").each(function () {							
+							twcontent = twcontent + '<li><a href="./detail-yt.html?nid='+ counter + '" data-ajax="false"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("description").text() + '</p><p>' + $(this).find("pubDate").text() + '</p></a></li>';
+							twfullcontent = twfullcontent + '<div  id="nid'+counter+'">' + $(this).find("content").text() + '</div-last>';
+							counter = counter+1;
+						});
+						DB.setItem('twcontent', twcontent);
+						DB.setItem('twfullcontent', twfullcontent);
+					}
+
+				function YTxmlError(xml) {
+						alert("Error Loading Youtube"); 
+				}	
 		set_progress("60");
-		$(".progress-console").html("Загрузка таблиц чемпионата России");	
+		$(".progress-console").html("Загрузка Youtube");	
 
 		<!-- ГРУЗИМ ТРАНСЛЯЦИИ -->
 		set_progress("70");
-		$(".progress-console").html("Загрузка таблиц чемпионата России");	
+		$(".progress-console").html("Загрузка трансляций чемпионата России");	
 
 		<!-- ГРУЗИМ РАСПИСАНИЕ -->
 		set_progress("80");
@@ -219,10 +251,10 @@ $(document).ready(function(){
 					<h3>Первый запуск приложения</h3>
 					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства. 
 					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет. 
-					Однако вы можете изменить тип устройства вы сможете изменить в меню настроек.
+					Однако вы можете изменить тип устройства в меню настроек.
 					</p>
 					
-					<a onclick="SetPadSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
+					<a href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
 					
 					<a onclick="SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
 				</center>
