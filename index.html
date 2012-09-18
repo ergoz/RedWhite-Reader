@@ -15,11 +15,22 @@
 	<script type="text/javascript" charset="utf-8" src="./system/jquery.eds.progressbar.js"></script>
 	
 	<script>
-	
-	
-$(document).ready(function(){	
-
 		var DB = window.localStorage;	
+		
+		function is_Connection() {
+			var networkState = navigator.network.connection.type;
+			var states = {};
+			states[Connection.UNKNOWN]  = 'true';
+			states[Connection.ETHERNET] = 'true';
+			states[Connection.WIFI]     = 'true';
+			states[Connection.CELL_2G]  = 'true';
+			states[Connection.CELL_3G]  = 'true';
+			states[Connection.CELL_4G]  = 'true';
+			states[Connection.NONE]     = 'false';
+			return states[networkState];
+		}
+		
+		
 		
 		function is_system() {
 			var System = DB.getItem("systype");
@@ -182,17 +193,26 @@ $(document).ready(function(){
 			GetSystem();
 		}	
 
-		
+
+$(document).ready(function(){		
 	if(is_system()) {
 		set_progress("5");
-		$(".progress-console").html("Проверка конфигурации");		
-		load_content();
+		$(".progress-console").html("Проверка конфигурации");	
+			if(is_Connection()) {
+				load_content();
+			} else {
+			alert('Подключение отсутствует. Используется старая база контента.');
+		}
 		GetSystem();
 	} else {
 		set_progress("5");
 		$(".progress-console").html("Проверка конфигурации");		
 		$(".first-run").css("display","block");
-		load_content();
+		if(is_Connection()) {
+			load_content();
+		} else {
+			alert('Подключение отсутствует. Используется старая база контента.');
+		}
 	}						
 });
    </script>
