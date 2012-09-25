@@ -5,16 +5,17 @@
 	
     <title> RedWhiteReader </title> 
 
-    <link rel="stylesheet" href="./system/jquery.mobile-1.2.0-alpha.1.min.css" />
     <link rel="stylesheet" href="./system/redwhite.min.css" />
+    <link rel="stylesheet" href="./system/jquery.mobile-1.2.0-alpha.1.min.css" />
     <link rel="stylesheet" href="./system/style.css" />
 
+	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./system/jquery.eds.progressbar.js"></script>
 	
 	<script>
+$(document).ready(function(){	
 		var DB = window.localStorage;	
 		
 		function is_Connection() {
@@ -193,8 +194,7 @@
 			GetSystem();
 		}	
 
-
-$(document).ready(function(){		
+	
 	if(is_system()) {
 		set_progress("5");
 		$(".progress-console").html("Проверка конфигурации");	
