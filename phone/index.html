@@ -18,15 +18,15 @@
 	
 		var DB = window.localStorage;
 		var ads = DB.getItem("ads");
-		var litenews = DB.getItem("litenews");
 		$('ads').html(ads);
+		var litenews = DB.getItem("litenews");
 		$('#rss-news').html(litenews);
 		$("#rss-news").listview('refresh');
 	});
    </script>
    
 </head> 
-	<body onload="init();">
+	<body>
 		
 			<header data-role="header" data-theme="a" data-position="fixed"> 
 				<a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>

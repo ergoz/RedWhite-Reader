@@ -5,36 +5,18 @@
 	
     <title> RedWhiteReader </title> 
 
-    <link rel="stylesheet" href="./system/redwhite.min.css" />
     <link rel="stylesheet" href="./system/jquery.mobile-1.2.0-alpha.1.min.css" />
+    <link rel="stylesheet" href="./system/redwhite.min.css" />
     <link rel="stylesheet" href="./system/style.css" />
 
 	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./system/jquery.eds.progressbar.js"></script>
-	
-	<script>
-$(document).ready(function(){	
-		var DB = window.localStorage;	
-		
-		function is_Connection() {
-			var networkState = navigator.network.connection.type;
-			var states = {};
-			states[Connection.UNKNOWN]  = 'true';
-			states[Connection.ETHERNET] = 'true';
-			states[Connection.WIFI]     = 'true';
-			states[Connection.CELL_2G]  = 'true';
-			states[Connection.CELL_3G]  = 'true';
-			states[Connection.CELL_4G]  = 'true';
-			states[Connection.NONE]     = 'false';
-			return states[networkState];
-		}
-		
-		
-		
+
+<script>	
 		function is_system() {
-			var System = DB.getItem("systype");
+			var System = window.localStorage.getItem("systype");
 			var status = false;
 			if(System == "phone"){
 				status = true;
@@ -46,7 +28,7 @@ $(document).ready(function(){
 		}
 
 		function GetSystem() {
-			Systype = DB.getItem("systype");
+			Systype = window.localStorage.getItem("systype");
 			if(Systype == "phone"){
 				location.replace("./phone/index.html");
 			}
@@ -59,10 +41,10 @@ $(document).ready(function(){
 		
 		function load_content() {
 		
-		DB.setItem('litenews', "");
-		DB.setItem('fullnews', "");
-		DB.setItem('twcontent', "");
-		DB.setItem('main-table', "");
+		window.localStorage.setItem('litenews', "");
+		window.localStorage.setItem('fullnews', "");
+		window.localStorage.setItem('twcontent', "");
+		window.localStorage.setItem('main-table', "");
 		
 		<!-- ГРУЗИМ НОВОСТИ -->
 			$.ajax({
@@ -70,7 +52,7 @@ $(document).ready(function(){
 				url: "http://ergoz.ru/rwreader/rw-rss.xml",
 				dataType: "xml",
 				timeout: 15000,
-				async: false,
+				async: true,
 				crossDomain: true,
 				success: xmlParser,
 				error:xmlError
@@ -85,12 +67,12 @@ $(document).ready(function(){
 							fullnews = fullnews + '<div id="nid'+counter+'">' + $(this).find("yadetail").text() + '</div-last>';
 							counter=counter+1;
 						});
-						DB.setItem('litenews', litenews);
-						DB.setItem('fullnews', fullnews);		
+						window.localStorage.setItem('litenews', litenews);
+						window.localStorage.setItem('fullnews', fullnews);		
 					}
 	
-					function xmlError(xml) {
-						alert("Error Loading News"); 
+					function xmlError(xml, textStatus, jqXHR) {
+						alert("Error Loading News: "+textStatus+" "+jqXHR); 
 					}
 					set_progress("30");
 					$(".progress-console").html("Новости загружены");
@@ -102,7 +84,7 @@ $(document).ready(function(){
 				dataType: "xml",
 				timeout: 15000,
 				crossDomain: true,
-				async: false,
+				async: true,
 				success: TWxmlParser,
 				error: TWxmlError
 			});
@@ -113,18 +95,18 @@ $(document).ready(function(){
 						$(xml).find("item").each(function () {							
 							twcontent = twcontent + '<li><a href="' + $(this).find("link").text() + '"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("pubDate").text() + '</p></a></li>';
 						});
-						DB.setItem('twcontent', twcontent);
+						window.localStorage.setItem('twcontent', twcontent);
 					}
 
-				function TWxmlError(xml) {
-						alert("Error Loading Twitter"); 
+				function TWxmlError(xml, textStatus, jqXHR) {
+						alert("Error Loading Twitter: "+textStatus+" "+jqXHR); 
 				}		
 				set_progress("40");			
 				$(".progress-console").html("Twitter лента загружена");	
 
 		<!-- ГРУЗИМ ТАБЛИЦЫ -->
 		$.get('http://ergoz.ru/rwreader/content.php?ask=table-tour', function(data) {
-			DB.setItem("main-table", data);	
+			window.localStorage.setItem("main-table", data);	
 		});
 		set_progress("50");
 		$(".progress-console").html("Загрузка таблиц чемпионата России");	
@@ -136,7 +118,7 @@ $(document).ready(function(){
 				dataType: "xml",
 				timeout: 30000,
 				crossDomain: true,
-				async: false,
+				async: true,
 				success: YTxmlParser,
 				error: YTxmlError
 			});
@@ -150,12 +132,12 @@ $(document).ready(function(){
 							twfullcontent = twfullcontent + '<div  id="nid'+counter+'">' + $(this).find("content").text() + '</div-last>';
 							counter = counter+1;
 						});
-						DB.setItem('twcontent', twcontent);
-						DB.setItem('twfullcontent', twfullcontent);
+						window.localStorage.setItem('twcontent', twcontent);
+						window.localStorage.setItem('twfullcontent', twfullcontent);
 					}
 
-				function YTxmlError(xml) {
-						alert("Error Loading Youtube"); 
+				function YTxmlError(xml, textStatus, jqXHR) {
+						alert("Error Loading Youtube: "+textStatus+" "+jqXHR); 
 				}	
 		set_progress("60");
 		$(".progress-console").html("Загрузка Youtube");	
@@ -170,7 +152,7 @@ $(document).ready(function(){
 
 		<!-- ГРУЗИМ РЕКЛАМУ -->
 		$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
-			DB.setItem("ads", data);	
+			window.localStorage.setItem("ads", data);	
 		});
 		set_progress("90");
 		$(".progress-console").html("Реклама загружена");
@@ -183,37 +165,35 @@ $(document).ready(function(){
 
 		
 		function SetPadSystem() {
-			DB.setItem("systype", "tablet");
+			window.localStorage.setItem("systype", "tablet");
 			GetSystem();
 		}
 		
 		
 				
 		function SetPhoneSystem() {
-			DB.setItem("systype", "phone");
+			window.localStorage.setItem("systype", "phone");
+			Alert("phone");
 			GetSystem();
 		}	
 
-	
+
+$(document).ready(function(){	
 	if(is_system()) {
 		set_progress("5");
-		$(".progress-console").html("Проверка конфигурации");	
-			if(is_Connection()) {
-				load_content();
-			} else {
-			alert('Подключение отсутствует. Используется старая база контента.');
-		}
+		$(".progress-console").html("Проверка конфигурации");		
+		load_content();
 		GetSystem();
 	} else {
 		set_progress("5");
 		$(".progress-console").html("Проверка конфигурации");		
 		$(".first-run").css("display","block");
-		if(is_Connection()) {
-			load_content();
-		} else {
-			alert('Подключение отсутствует. Используется старая база контента.');
-		}
-	}						
+		load_content();
+	}
+
+
+	var ads = DB.getItem("ads");
+	$('ads').html(ads);	
 });
    </script>
    
@@ -274,7 +254,7 @@ $(document).ready(function(){
 					Однако вы можете изменить тип устройства в меню настроек.
 					</p>
 					
-					<a href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
+					<a onclick="SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
 					
 					<a onclick="SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
 				</center>
