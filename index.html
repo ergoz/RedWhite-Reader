@@ -51,7 +51,7 @@
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/rw-rss.xml",
 				dataType: "xml",
-				timeout: 15000,
+				timeout: 30000,
 				async: true,
 				crossDomain: true,
 				success: xmlParser,
@@ -82,7 +82,7 @@
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/tw-rss.xml",
 				dataType: "xml",
-				timeout: 15000,
+				timeout: 30000,
 				crossDomain: true,
 				async: true,
 				success: TWxmlParser,
@@ -99,7 +99,7 @@
 					}
 
 				function TWxmlError(xml, textStatus, jqXHR) {
-						alert("Error Loading Twitter: "+textStatus+" "+jqXHR); 
+						//alert("Error Loading Twitter: "+textStatus+" "+jqXHR); 
 				}		
 				set_progress("40");			
 				$(".progress-console").html("Twitter лента загружена");	
@@ -162,7 +162,7 @@
 		$(".progress-console").html("Загрузка завершена");	
 		}
 		
-
+		
 		
 		function SetPadSystem() {
 			window.localStorage.setItem("systype", "tablet");
@@ -173,7 +173,6 @@
 				
 		function SetPhoneSystem() {
 			window.localStorage.setItem("systype", "phone");
-			Alert("phone");
 			GetSystem();
 		}	
 
@@ -254,16 +253,16 @@ $(document).ready(function(){
 					Однако вы можете изменить тип устройства в меню настроек.
 					</p>
 					
-					<a onclick="SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
+					<a onclick="javascript: SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
 					
-					<a onclick="SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
+					<a onclick="javascript: SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
 				</center>
 				</div>
 			</div>
 			
 			
 			<footer data-role="footer" data-position="fixed">  
-				<div style="margin-left:-15px;"><ads></ads></div>
+				<div><ads></ads></div>
 			</footer>
 		
 	</body>
