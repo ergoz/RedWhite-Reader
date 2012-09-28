@@ -3,7 +3,7 @@
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		= "com.ergoz.rwreader"
 	version 	= "1.2.5"
-	versionCode="400"
+	versionCode="410"
 	>
 
 	<name>RedWhite Reader</name>
