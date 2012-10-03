@@ -17,6 +17,8 @@
 		ErgoZ Development Studio
 	</author>
 
+	<access origin="*" subdomains="true" />
+
 	<icon src="/gap/icons/default.jpg" gap:role="default" />
 
 	<icon src="/gap/icons/android/ic_launcher.png" gap:platform="android" gap:density="ldpi" />
@@ -37,7 +39,6 @@
 	-->
 
 	<feature name="http://api.phonegap.com/1.0/network"/>
-	<feature name="http://api.phonegap.com/1.0/notification"/>
 
 	<preference name="useBrowserHistory" value="false" />
 	<preference name="orientation" value="both" />
@@ -49,6 +50,5 @@
 	<preference name="android-maxSdkVersion" value="16+" />
 	<preference name="android-installLocation" value="auto" />
 
-	<access origin="*" subdomains="true" />
 
 </widget>
