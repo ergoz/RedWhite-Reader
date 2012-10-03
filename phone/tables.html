@@ -1,18 +1,18 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
+<!DOCTYPE html>
+<html>
+<head>
 	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-    <title> RedWhiteReader </title> 
+
+    <title> RedWhiteReader </title>
 
     <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
     <link rel="stylesheet" href="../system/redwhite.min.css" />
     <link rel="stylesheet" href="../system/style.css" />
 
-    <script type="text/javascript" src="../system/jquery-latest.min.js"></script>						
-    <script type="text/javascript" src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>				
+    <script type="text/javascript" src="../system/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
 	<script type="text/javascript" src="../cordova.js"></script>
-	
+
 	<script type="text/javascript">
     $(document).ready(function(){
 		var DB = window.localStorage;
@@ -23,10 +23,10 @@
 		$("#table").listview('refresh');
         });
    </script>
-   
-</head> 
+
+</head>
 	<body onload="init();">
-		
+
 			<header data-role="header" data-theme="a" data-position="fixed">
 				<a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
 					<h1>Red White Reader</h1>
@@ -39,33 +39,33 @@
 							<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
 							<center>
 								<div style="margin-left:-15px;"><ads></ads></div>
-								<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>    
+								<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
 								<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
 							</center>
 						</div>
-					</div>				
+					</div>
 			</header>
-		
-		
+
+
 			<content data-role="content" data-theme="a" >
-				<div id="table">  
-				
+				<div id="table">
+
 				</div>
 			</content>
-			
-			
-		<footer data-role="footer" data-position="fixed">	
+
+
+		<footer data-role="footer" data-position="fixed">
 				<div data-role="navbar" class="nav-footer" data-iconpos="top">
 				<center>
 					<ul>
 						<li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
 						<li><a href="./tables.html" id="charts" data-icon="custom"  data-ajax="false">Таблицы</a></li>
-						<li><a href="./youtube.html" onclick="alert('Youtube in dev');" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="./detail-yt.html" id="youtube" data-icon="custom">Youtube</a></li>
 						<li><a href="#" onclick="alert('Online in dev');" id="online" data-icon="custom">Online</a></li>
 						<li><a href="./calendar.html" onclick="alert('Расписание in dev');" id="calendar" data-icon="custom">Расписание</a></li>
 					</ul>
 				</center>
 				</div></footer>
-		
+
 	</body>
 </html>

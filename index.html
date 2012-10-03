@@ -1,9 +1,9 @@
-<!DOCTYPE html> 
-<html> 
-	<head> 
+<!DOCTYPE html>
+<html>
+	<head>
 	<meta charset="utf-8">
-	
-    <title> RedWhiteReader </title> 
+
+    <title> RedWhiteReader </title>
 
     <link rel="stylesheet" href="./system/jquery.mobile-1.2.0-alpha.1.min.css" />
     <link rel="stylesheet" href="./system/redwhite.min.css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="./system/jquery.eds.progressbar.js"></script>
 
-<script>	
+<script>
 		function is_system() {
 			var System = window.localStorage.getItem("systype");
 			var status = false;
@@ -35,48 +35,48 @@
 			if(Systype == "tablet"){
 				location.replace("./tablet/index.html");
 			}
-		}		
-		
-		
-		
+		}
+
+
+
 		function load_content() {
-		
+
 		window.localStorage.setItem('litenews', "");
 		window.localStorage.setItem('fullnews', "");
 		window.localStorage.setItem('twcontent', "");
 		window.localStorage.setItem('main-table', "");
-		
+
 		<!-- ГРУЗИМ НОВОСТИ -->
 			$.ajax({
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/rw-rss.xml",
 				dataType: "xml",
 				timeout: 30000,
-				async: true,
+				async: false,
 				crossDomain: true,
 				success: xmlParser,
 				error:xmlError
 			});
-	
+
 				function xmlParser(xml) {
 					var counter = 0;
 					var litenews = "";
 					var fullnews = "";
-						$(xml).find("item").each(function () {							
+						$(xml).find("item").each(function () {
 							litenews = litenews + '<li><a href="./detail.html?nid='+ counter + '" data-ajax="false">' + $(this).find("title").text() + '</a></li>';
 							fullnews = fullnews + '<div id="nid'+counter+'">' + $(this).find("yadetail").text() + '</div-last>';
 							counter=counter+1;
 						});
 						window.localStorage.setItem('litenews', litenews);
-						window.localStorage.setItem('fullnews', fullnews);		
+						window.localStorage.setItem('fullnews', fullnews);
 					}
-	
+
 					function xmlError(xml, textStatus, jqXHR) {
-						alert("Error Loading News: "+textStatus+" "+jqXHR); 
+						alert("Error Loading News: "+textStatus+" "+jqXHR);
 					}
 					set_progress("30");
 					$(".progress-console").html("Новости загружены");
-		
+
 		<!-- ГРУЗИМ ТВИТТЕР -->
 		$.ajax({
 				type: "GET",
@@ -84,32 +84,32 @@
 				dataType: "xml",
 				timeout: 30000,
 				crossDomain: true,
-				async: true,
+				async: false,
 				success: TWxmlParser,
 				error: TWxmlError
 			});
-		
+
 				function TWxmlParser(xml) {
 					var counter = 0;
 					var twcontent = "";
-						$(xml).find("item").each(function () {							
+						$(xml).find("item").each(function () {
 							twcontent = twcontent + '<li><a href="' + $(this).find("link").text() + '"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("pubDate").text() + '</p></a></li>';
 						});
 						window.localStorage.setItem('twcontent', twcontent);
 					}
 
 				function TWxmlError(xml, textStatus, jqXHR) {
-						//alert("Error Loading Twitter: "+textStatus+" "+jqXHR); 
-				}		
-				set_progress("40");			
-				$(".progress-console").html("Twitter лента загружена");	
+						//alert("Error Loading Twitter: "+textStatus+" "+jqXHR);
+				}
+				set_progress("40");
+				$(".progress-console").html("Twitter лента загружена");
 
 		<!-- ГРУЗИМ ТАБЛИЦЫ -->
 		$.get('http://ergoz.ru/rwreader/content.php?ask=table-tour', function(data) {
-			window.localStorage.setItem("main-table", data);	
+			window.localStorage.setItem("main-table", data);
 		});
 		set_progress("50");
-		$(".progress-console").html("Загрузка таблиц чемпионата России");	
+		$(".progress-console").html("Загрузка таблиц чемпионата России");
 
 		<!-- ГРУЗИМ YOUTUBE -->
 			$.ajax({
@@ -118,87 +118,87 @@
 				dataType: "xml",
 				timeout: 30000,
 				crossDomain: true,
-				async: true,
+				async: false,
 				success: YTxmlParser,
 				error: YTxmlError
 			});
-		
+
 				function YTxmlParser(xml) {
 					var counter = 0;
 					var twcontent = "";
 					var twfullcontent = "";
-						$(xml).find("item").each(function () {							
+						$(xml).find("item").each(function () {
 							twcontent = twcontent + '<li><a href="./detail-yt.html?nid='+ counter + '" data-ajax="false"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("description").text() + '</p><p>' + $(this).find("pubDate").text() + '</p></a></li>';
 							twfullcontent = twfullcontent + '<div  id="nid'+counter+'">' + $(this).find("content").text() + '</div-last>';
 							counter = counter+1;
 						});
-						window.localStorage.setItem('twcontent', twcontent);
-						window.localStorage.setItem('twfullcontent', twfullcontent);
+						window.localStorage.setItem('ytcontent', twcontent);
+						window.localStorage.setItem('ytfullcontent', twfullcontent);
 					}
 
 				function YTxmlError(xml, textStatus, jqXHR) {
-						alert("Error Loading Youtube: "+textStatus+" "+jqXHR); 
-				}	
+						alert("Error Loading Youtube: "+textStatus+" "+jqXHR);
+				}
 		set_progress("60");
-		$(".progress-console").html("Загрузка Youtube");	
+		$(".progress-console").html("Загрузка Youtube");
 
 		<!-- ГРУЗИМ ТРАНСЛЯЦИИ -->
 		set_progress("70");
-		$(".progress-console").html("Загрузка трансляций чемпионата России");	
+		$(".progress-console").html("Загрузка трансляций чемпионата России");
 
 		<!-- ГРУЗИМ РАСПИСАНИЕ -->
 		set_progress("80");
-		$(".progress-console").html("Загрузка рекламы");	
+		$(".progress-console").html("Загрузка рекламы");
 
 		<!-- ГРУЗИМ РЕКЛАМУ -->
 		$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
-			window.localStorage.setItem("ads", data);	
+			window.localStorage.setItem("ads", data);
 		});
 		set_progress("90");
 		$(".progress-console").html("Реклама загружена");
 
 		<!-- ГРУЗИМ ЕЩЁ ЧТО-ТО -->
 		set_progress("100");
-		$(".progress-console").html("Загрузка завершена");	
+		$(".progress-console").html("Загрузка завершена");
 		}
-		
-		
-		
+
+
+
 		function SetPadSystem() {
 			window.localStorage.setItem("systype", "tablet");
 			GetSystem();
 		}
-		
-		
-				
+
+
+
 		function SetPhoneSystem() {
 			window.localStorage.setItem("systype", "phone");
 			GetSystem();
-		}	
+		}
 
 
-$(document).ready(function(){	
+$(document).ready(function(){
 	if(is_system()) {
 		set_progress("5");
-		$(".progress-console").html("Проверка конфигурации");		
+		$(".progress-console").html("Проверка конфигурации");
 		load_content();
 		GetSystem();
 	} else {
 		set_progress("5");
-		$(".progress-console").html("Проверка конфигурации");		
+		$(".progress-console").html("Проверка конфигурации");
 		$(".first-run").css("display","block");
 		load_content();
 	}
 
 
 	var ads = DB.getItem("ads");
-	$('ads').html(ads);	
+	$('ads').html(ads);
 });
    </script>
-   
-</head> 
+
+</head>
 	<body>
-			<header data-role="header" data-theme="a" data-position="fixed">  
+			<header data-role="header" data-theme="a" data-position="fixed">
 					<a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse">Назад</a>
 					<h1>Red White Reader</h1>
 					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
@@ -210,60 +210,60 @@ $(document).ready(function(){
 								<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
 								<center>
 									<div style="margin-left:-15px;"><ads></ads></div>
-									<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>    
+									<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
 									<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
 								</center>
 							</div>
-						</div>	
+						</div>
 			</header>
-		
-		
-		
+
+
+
 			<div data-role="content" data-theme="a" >
 				<style>
 					.ui-icon-rw-phone {
 						background-image: url("./system/images/phone.png");
-						width: 16px; 
+						width: 16px;
 						height: 28px;
 						border-radius: 0px;
 						margin-top: -15px !important;
 					}
 					.ui-icon-rw-pad {
 						background-image: url("./system/images/pad.png");
-						width: 22px; 
+						width: 22px;
 						height: 28px;
 						border-radius: 0px;
 						margin-top: -15px !important;
 					}
 				</style>
-	
-	
+
+
 				<div class="loading-content">
 					<center>
 					<h3>Загрузка контента</h3>
 					<div class="progress-console" style="font-size: 0.70em !important;">Загрузка контента</div>
 					</center>
-					<div class="progressbar"><div></div><span>0%</span></div>				
+					<div class="progressbar"><div></div><span>0%</span></div>
 				</div>
-	
+
 				<div class="first-run" style="display:none;"><center>
 					<h3>Первый запуск приложения</h3>
-					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства. 
-					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет. 
+					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства.
+					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет.
 					Однако вы можете изменить тип устройства в меню настроек.
 					</p>
-					
+
 					<a onclick="javascript: SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
-					
+
 					<a onclick="javascript: SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
 				</center>
 				</div>
 			</div>
-			
-			
-			<footer data-role="footer" data-position="fixed">  
+
+
+			<footer data-role="footer" data-position="fixed">
 				<div><ads></ads></div>
 			</footer>
-		
+
 	</body>
 </html>
