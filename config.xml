@@ -19,8 +19,6 @@
 
 	<access origin="*" subdomains="true" />
 
-	<preference name="phonegap-version" value="2.1.0" />
-
 	<icon src="/gap/icons/default.jpg" gap:role="default" />
 
 	<icon src="/gap/icons/android/ic_launcher.png" gap:platform="android" gap:density="ldpi" />
