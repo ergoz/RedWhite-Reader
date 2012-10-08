@@ -41,10 +41,12 @@
 
 		function load_content() {
 
-		window.localStorage.setItem('litenews', "");
-		window.localStorage.setItem('fullnews', "");
-		window.localStorage.setItem('twcontent', "");
-		window.localStorage.setItem('main-table', "");
+		//window.localStorage.setItem('litenews', "");
+		//window.localStorage.setItem('fullnews', "");
+		//window.localStorage.setItem('twcontent', "");
+		//window.localStorage.setItem('main-table', "");
+		//window.localStorage.setItem('ytcontent', "");
+		//window.localStorage.setItem('ytfullcontent', "");
 
 		<!-- ГРУЗИМ НОВОСТИ -->
 			$.ajax({
@@ -125,15 +127,15 @@
 
 				function YTxmlParser(xml) {
 					var counter = 0;
-					var twcontent = "";
-					var twfullcontent = "";
+					var ytcontent = "";
+					var ytfullcontent = "";
 						$(xml).find("item").each(function () {
-							twcontent = twcontent + '<li><a href="./detail-yt.html?nid='+ counter + '" data-ajax="false"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("description").text() + '</p><p>' + $(this).find("pubDate").text() + '</p></a></li>';
-							twfullcontent = twfullcontent + '<div  id="nid'+counter+'">' + $(this).find("content").text() + '</div-last>';
+							ytcontent = ytcontent + '<li><a href="./detail-yt.html?nid='+ counter + '" data-ajax="false"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("description").text() + '</p><p>' + $(this).find("pubDate").text() + '</p></a></li>';
+							ytfullcontent = ytfullcontent + '<div  id="nid'+counter+'">' + $(this).find("content").text() + '</div-last>';
 							counter = counter+1;
 						});
-						window.localStorage.setItem('ytcontent', twcontent);
-						window.localStorage.setItem('ytfullcontent', twfullcontent);
+						window.localStorage.setItem('ytcontent', ytcontent);
+						window.localStorage.setItem('ytfullcontent', ytfullcontent);
 					}
 
 				function YTxmlError(xml, textStatus, jqXHR) {
