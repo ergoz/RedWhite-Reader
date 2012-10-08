@@ -9,12 +9,21 @@
     <link rel="stylesheet" href="./system/redwhite.min.css" />
     <link rel="stylesheet" href="./system/style.css" />
 
-	<script type="text/javascript" charset="utf-8" src="./cordova-2.1.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="./system/jquery.eds.progressbar.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./system/jquery.xdomainajax.js"></script>
 
 <script>
+$(document).bind("mobileinit", function()
+		{
+		    if (navigator.userAgent.indexOf("Android") != -1)
+		    {
+		        $.mobile.defaultPageTransition = 'none';
+		        $.mobile.defaultDialogTransition = 'none';
+		    }
+		});
+
 		function is_system() {
 			var System = window.localStorage.getItem("systype");
 			var status = false;
@@ -53,9 +62,9 @@
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/rw-rss.xml",
 				dataType: "xml",
-				timeout: 30000,
+				timeout: 60000,
+                crossDomain: true,
 				async: false,
-				crossDomain: true,
 				success: xmlParser,
 				error:xmlError
 			});
@@ -76,15 +85,14 @@
 					function xmlError(xml, textStatus, jqXHR) {
 						alert("Error Loading News: "+textStatus+" "+jqXHR);
 					}
-					set_progress("30");
-					$(".progress-console").html("Новости загружены");
+
 
 		<!-- ГРУЗИМ ТВИТТЕР -->
 		$.ajax({
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/tw-rss.xml",
 				dataType: "xml",
-				timeout: 30000,
+				timeout: 60000,
 				crossDomain: true,
 				async: false,
 				success: TWxmlParser,
@@ -103,22 +111,20 @@
 				function TWxmlError(xml, textStatus, jqXHR) {
 						//alert("Error Loading Twitter: "+textStatus+" "+jqXHR);
 				}
-				set_progress("40");
-				$(".progress-console").html("Twitter лента загружена");
+
 
 		<!-- ГРУЗИМ ТАБЛИЦЫ -->
 		$.get('http://ergoz.ru/rwreader/content.php?ask=table-tour', function(data) {
 			window.localStorage.setItem("main-table", data);
 		});
-		set_progress("50");
-		$(".progress-console").html("Загрузка таблиц чемпионата России");
+
 
 		<!-- ГРУЗИМ YOUTUBE -->
 			$.ajax({
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/yt-rss.xml",
 				dataType: "xml",
-				timeout: 30000,
+				timeout: 60000,
 				crossDomain: true,
 				async: false,
 				success: YTxmlParser,
@@ -141,29 +147,11 @@
 				function YTxmlError(xml, textStatus, jqXHR) {
 						alert("Error Loading Youtube: "+textStatus+" "+jqXHR);
 				}
-		set_progress("60");
-		$(".progress-console").html("Загрузка Youtube");
-
-		<!-- ГРУЗИМ ТРАНСЛЯЦИИ -->
-		set_progress("70");
-		$(".progress-console").html("Загрузка трансляций чемпионата России");
-
-		<!-- ГРУЗИМ РАСПИСАНИЕ -->
-		set_progress("80");
-		$(".progress-console").html("Загрузка рекламы");
 
 		<!-- ГРУЗИМ РЕКЛАМУ -->
 		$.get('http://ergoz.ru/rwreader/ads.php', function(data) {
 			window.localStorage.setItem("ads", data);
 		});
-		set_progress("90");
-		$(".progress-console").html("Реклама загружена");
-
-		<!-- ГРУЗИМ ЕЩЁ ЧТО-ТО -->
-		set_progress("100");
-		$(".progress-console").html("Загрузка завершена");
-		}
-
 
 
 		function SetPadSystem() {
@@ -181,13 +169,9 @@
 
 $(document).ready(function(){
 	if(is_system()) {
-		set_progress("5");
-		$(".progress-console").html("Проверка конфигурации");
-		load_content();
+	    load_content();
 		GetSystem();
 	} else {
-		set_progress("5");
-		$(".progress-console").html("Проверка конфигурации");
 		$(".first-run").css("display","block");
 		load_content();
 	}
@@ -242,13 +226,13 @@ $(document).ready(function(){
 
 				<div class="loading-content">
 					<center>
-					<h3>Загрузка контента</h3>
-					<div class="progress-console" style="font-size: 0.70em !important;">Загрузка контента</div>
+					   <h3>Загрузка контента</h3>
+					   <div class="progress-console">Идёт агрузка контента...</div>
 					</center>
-					<div class="progressbar"><div></div><span>0%</span></div>
 				</div>
 
-				<div class="first-run" style="display:none;"><center>
+				<div class="first-run" style="display:none;">
+				<center>
 					<h3>Первый запуск приложения</h3>
 					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства.
 					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет.

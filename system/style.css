@@ -65,3 +65,8 @@
 table.maintable {
 	width: 100%;
 }
+
+/* Flicking fix on jqm */
+.ui-page {
+    -webkit-backface-visibility: hidden;
+}
