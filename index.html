@@ -12,6 +12,7 @@
 	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
+<script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#7d650b02-0806-11e2-b761-1231392cd79b"></script></body>
 
 <script>
 		function is_system() {
@@ -52,7 +53,7 @@
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/rw-rss.xml",
 				dataType: "xml",
-				timeout: 60000,
+				timeout: 15000,
                 crossDomain: true,
 				async: false,
 				success: xmlParser,
@@ -82,7 +83,7 @@
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/tw-rss.xml",
 				dataType: "xml",
-				timeout: 60000,
+				timeout: 15000,
 				crossDomain: true,
 				async: false,
 				success: TWxmlParser,
@@ -114,7 +115,7 @@
 				type: "GET",
 				url: "http://ergoz.ru/rwreader/yt-rss.xml",
 				dataType: "xml",
-				timeout: 60000,
+				timeout: 15000,
 				crossDomain: true,
 				async: false,
 				success: YTxmlParser,
@@ -158,10 +159,6 @@
 
 
 $(document).ready(function(){
-
-	alert('starting');
-
-
 	if(is_system()) {
 	    load_content();
 		GetSystem();
@@ -171,9 +168,8 @@ $(document).ready(function(){
 	}
 
 
-	var ads = DB.getItem("ads");
+	var ads = window.localStorage.getItem("ads");
 	$('ads').html(ads);
-
 });
    </script>
 
@@ -246,6 +242,5 @@ $(document).ready(function(){
 			</footer>
 
 	</body>
-<!-- ver. 1.2.9.7 -->
- <script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#7d650b02-0806-11e2-b761-1231392cd79b"></script></body>
+<!-- ver. 1.2.9.8 -->
 </html>
