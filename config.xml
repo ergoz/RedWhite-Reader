@@ -2,8 +2,8 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		= "com.ergoz.rwreader"
-	version 	= "1.2.9.1"
-	versionCode="414"
+	version 	= "1.2.9.3"
+	versionCode="416"
 	>
 
 	<name>RedWhite Reader</name>
