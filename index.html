@@ -67,7 +67,7 @@ function load_content(){
                 dataType: "xml",
                 timeout: 60000,
                 crossDomain: true,
-                async: false,
+                async: true,
                 success: xmlParser,
                 error:xmlError
             });
@@ -98,7 +98,7 @@ function load_content(){
                 dataType: "xml",
                 timeout: 60000,
                 crossDomain: true,
-                async: false,
+                async: true,
                 success: TWxmlParser,
                 error: TWxmlError
             });
@@ -131,7 +131,7 @@ function load_content(){
                 dataType: "xml",
                 timeout: 60000,
                 crossDomain: true,
-                async: false,
+                async: true,
                 success: YTxmlParser,
                 error: YTxmlError
             });
@@ -266,6 +266,7 @@ $(document).ready(function(){
 				<div><ads></ads></div>
 			</footer>
 
+ <script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#7d650b02-0806-11e2-b761-1231392cd79b"></script>
 
 	</body>
 </html>
