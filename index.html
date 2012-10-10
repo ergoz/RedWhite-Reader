@@ -14,8 +14,6 @@
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
 
 <script>
-console.log('Device is now ready');
-
 		function is_system(){
 			var System = window.localStorage.getItem("systype");
 			var status = false;
@@ -41,7 +39,6 @@ console.log('Device is now ready');
 
 
 function load_content(){
-	 console.log('Loading content start...');
 
 		/*
 		 * window.localStorage.setItem('litenews', "");
@@ -88,7 +85,6 @@ function load_content(){
                     function xmlError(xml, textStatus, jqXHR) {
                         alert("Error Loading News: "+textStatus+" "+jqXHR);
                     }
-        console.log('News loaded');
 
 
         <!-- ГРУЗИМ ТВИТТЕР -->
@@ -116,7 +112,6 @@ function load_content(){
                         alert("Error Loading Twitter: "+textStatus+" "+jqXHR);
                 }
 
-        console.log('Twitter loaded');
 
         <!-- ГРУЗИМ ТАБЛИЦЫ -->
         $.get('http://ergoz.ru/rwreader/content.php?ask=table-tour', function(data){
@@ -153,8 +148,6 @@ function load_content(){
                         alert("Error Loading Youtube: "+textStatus+" "+jqXHR);
                 }
 
-        console.log('Device is now ready');
-
 
 
 
@@ -184,13 +177,11 @@ $(document).ready(function(){
      }
 
 	if(is_system()) {
-		console.log('Screen type detected');
 	    load_content();
 		GetSystem();
 		var ads = window.localStorage.getItem("ads");
 		$('ads').html(ads);
 	} else {
-		console.log('Screen type didnt set. Showing menus');
 		$(".first-run").css("display","block");
 		load_content();
 		//SetPhoneSystem();
@@ -255,8 +246,8 @@ $(document).ready(function(){
 					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет.
 					Однако вы можете изменить тип устройства в меню настроек.
 					</p>
-					<a onclick="SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
-					<a onclick="SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
+					<a onclick="javascript: SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
+					<a onclick="javascript: SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
 				</center>
 				</div>
 			</div>
