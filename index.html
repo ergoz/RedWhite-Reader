@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="./system/redwhite.min.css" />
     <link rel="stylesheet" href="./system/style.css" />
 
-	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
 
 <script>
 		function is_system(){
@@ -40,15 +40,12 @@
 
  var load_content function(){
 
-		/*
-		 * window.localStorage.setItem('litenews', "");
-		 * window.localStorage.setItem('fullnews', "");
-		 * window.localStorage.setItem('twcontent', "");
-		 * window.localStorage.setItem('main-table', "");
-		 * window.localStorage.setItem('ytcontent', "");
-		 * window.localStorage.setItem('ytfullcontent', "");
-		 *
-		 */
+		 window.localStorage.setItem('litenews', "");
+		 window.localStorage.setItem('fullnews', "");
+		 window.localStorage.setItem('twcontent', "");
+		 window.localStorage.setItem('main-table', "");
+		 window.localStorage.setItem('ytcontent', "");
+		 window.localStorage.setItem('ytfullcontent', "");
 
         <!-- ГРУЗИМ РЕКЛАМУ -->
         $.get('http://ergoz.ru/rwreader/ads.php', function(data){
