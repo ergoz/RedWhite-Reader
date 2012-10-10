@@ -164,11 +164,11 @@ function load_content(){
 
 $(document).ready(function(){
 
-	 if (navigator.userAgent.indexOf("Android") != -1)
-     {
-         $.mobile.defaultPageTransition = 'none';
-         $.mobile.defaultDialogTransition = 'none';
-     }
+	 //if (navigator.userAgent.indexOf("Android") != -1)
+     //{
+     //    $.mobile.defaultPageTransition = 'none';
+     //    $.mobile.defaultDialogTransition = 'none';
+     //}
 
 	if(is_system()) {
 	    load_content();
@@ -178,13 +178,13 @@ $(document).ready(function(){
 	} else {
 		$(".first-run").css("display","block");
 		load_content();
+		//SetPhoneSystem();
 		var ads = window.localStorage.getItem("ads");
 		$('ads').html(ads);
 	}
 
 });
-   </script>
-
+</script>
 </head>
 	<body>
 			<header data-role="header" data-theme="a" data-position="fixed">
@@ -240,10 +240,8 @@ $(document).ready(function(){
 					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет.
 					Однако вы можете изменить тип устройства в меню настроек.
 					</p>
-
-					<a onclick="javascript: SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
-
-					<a onclick="javascript: SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
+					<a onclick="SetPhoneSystem();" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
+					<a onclick="SetPhoneSystem();" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
 				</center>
 				</div>
 			</div>
