@@ -38,7 +38,7 @@
 
 
 
-function load_content(){
+ var load_content function(){
 
 		/*
 		 * window.localStorage.setItem('litenews', "");
@@ -168,27 +168,20 @@ function load_content(){
 
 
 $(document).ready(function(){
-
-	 if (navigator.userAgent.indexOf("Android") != -1)
-     {
-		 console.log('System detected as Android - Changing Transitions');
-         $.mobile.defaultPageTransition = 'none';
-         $.mobile.defaultDialogTransition = 'none';
-     }
-
-	if(is_system()) {
-	    load_content();
-		GetSystem();
-		var ads = window.localStorage.getItem("ads");
-		$('ads').html(ads);
-	} else {
-		$(".first-run").css("display","block");
-		load_content();
-		//SetPhoneSystem();
-		var ads = window.localStorage.getItem("ads");
-		$('ads').html(ads);
-	}
-
+    $('a').click(function(){
+    	if(is_system()) {
+            load_content();
+            GetSystem();
+            var ads = window.localStorage.getItem("ads");
+            $('ads').html(ads);
+        } else {
+            $(".first-run").css("display","block");
+            load_content();
+            //SetPhoneSystem();
+            var ads = window.localStorage.getItem("ads");
+            $('ads').html(ads);
+        }
+    });
 });
 </script>
 </head>
@@ -248,8 +241,11 @@ $(document).ready(function(){
 					</p>
 					<a onclick="javascript: SetPhoneSystem(); return false;" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
 					<a onclick="javascript: SetPhoneSystem(); return false;" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
+
 				</center>
 				</div>
+				<br>
+                    <a id="startup" href="#" id="pad" data-role="button" data-icon="gear">START</a>
 			</div>
 
 
