@@ -12,8 +12,11 @@
 	<script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
+    <script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#7d650b02-0806-11e2-b761-1231392cd79b"></script>
 
 <script>
+console.log('Device is now ready');
+
 		function is_system(){
 			var System = window.localStorage.getItem("systype");
 			var status = false;
@@ -39,6 +42,7 @@
 
 
 function load_content(){
+	 console.log('Loading content start...');
 
 		/*
 		 * window.localStorage.setItem('litenews', "");
@@ -54,6 +58,7 @@ function load_content(){
         $.get('http://ergoz.ru/rwreader/ads.php', function(data){
             window.localStorage.setItem("ads", data);
         });
+        console.log('Ads loaded');
 
 
         <!-- ГРУЗИМ НОВОСТИ -->
@@ -84,6 +89,7 @@ function load_content(){
                     function xmlError(xml, textStatus, jqXHR) {
                         alert("Error Loading News: "+textStatus+" "+jqXHR);
                     }
+        console.log('News loaded');
 
 
         <!-- ГРУЗИМ ТВИТТЕР -->
@@ -111,12 +117,13 @@ function load_content(){
                         alert("Error Loading Twitter: "+textStatus+" "+jqXHR);
                 }
 
+        console.log('Twitter loaded');
 
         <!-- ГРУЗИМ ТАБЛИЦЫ -->
         $.get('http://ergoz.ru/rwreader/content.php?ask=table-tour', function(data){
             window.localStorage.setItem("main-table", data);
         });
-
+        console.log('Tables loaded');
 
         <!-- ГРУЗИМ YOUTUBE -->
             $.ajax({
@@ -147,15 +154,21 @@ function load_content(){
                         alert("Error Loading Youtube: "+textStatus+" "+jqXHR);
                 }
 
+        console.log('Device is now ready');
 
-        function SetPadSystem(){
+
+
+
+        var SetPadSystem = function(){
+        	console.log('Clicked SetPadSystem');
             window.localStorage.setItem("systype", "tablet");
             GetSystem();
         }
 
 
 
-        function SetPhoneSystem(){
+        var SetPhoneSystem = function(){
+        	console.log('Clicked SetPhoneSystem');
             window.localStorage.setItem("systype", "phone");
             GetSystem();
         }
@@ -164,18 +177,21 @@ function load_content(){
 
 $(document).ready(function(){
 
-	 //if (navigator.userAgent.indexOf("Android") != -1)
-     //{
-     //    $.mobile.defaultPageTransition = 'none';
-     //    $.mobile.defaultDialogTransition = 'none';
-     //}
+	 if (navigator.userAgent.indexOf("Android") != -1)
+     {
+		 console.log('System detected as Android - Changing Transitions');
+         $.mobile.defaultPageTransition = 'none';
+         $.mobile.defaultDialogTransition = 'none';
+     }
 
 	if(is_system()) {
+		console.log('Screen type detected');
 	    load_content();
 		GetSystem();
 		var ads = window.localStorage.getItem("ads");
 		$('ads').html(ads);
 	} else {
+		console.log('Screen type didnt set. Showing menus');
 		$(".first-run").css("display","block");
 		load_content();
 		//SetPhoneSystem();
@@ -250,5 +266,7 @@ $(document).ready(function(){
 			<footer data-role="footer" data-position="fixed">
 				<div><ads></ads></div>
 			</footer>
+
+
 	</body>
 </html>
