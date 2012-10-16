@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> RedWhiteReader </title>
 
     <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
@@ -19,9 +20,10 @@
 		var tablescontent = window.localStorage.getItem("main-table");
 		$('ads').html(ads);
 		$('content').html(tablescontent);
-		$("content").listview('refresh');
         });
    </script>
+
+   <style>.maintable{font-size: 0.7 em;}</style>
 
 </head>
 	<body onload="init();">
@@ -47,6 +49,7 @@
 
 
 			<content data-role="content" data-theme="a" >
+
 			</content>
 
 

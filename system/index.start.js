@@ -32,19 +32,12 @@ function GetSystem(){
  */
 function load_content() {
 
-    window.localStorage.setItem('litenews',"");
-    window.localStorage.setItem('fullnews',"");
-    window.localStorage.setItem('twcontent',"");
-    window.localStorage.setItem('main-table',"");
-    window.localStorage.setItem('ytcontent',"");
-    window.localStorage.setItem('ytfullcontent',"");
-
-
-    // ГРУЗИМ РЕКЛАМУ
-    $.get('http://ergoz.ru/rwreader/ads.php', function(data){
-	window.localStorage.setItem("ads", data);
-    });
-
+    //window.localStorage.setItem('litenews',"");
+    //window.localStorage.setItem('fullnews',"");
+    //window.localStorage.setItem('twcontent',"");
+    //window.localStorage.setItem('main-table',"");
+    //window.localStorage.setItem('ytcontent',"");
+    //window.localStorage.setItem('ytfullcontent',"");
 
     // ГРУЗИМ НОВОСТИ
     $.ajax({
@@ -64,7 +57,7 @@ function load_content() {
 	var fullnews = "";
 	$(xml).find("item").each(function () {
 	    litenews = litenews + '<li><a href="./detail.html?nid='+ counter + '" data-ajax="false">' + $(this).find("title").text() + '</a></li>';
-	    fullnews = fullnews + '<div id="nid'+counter+'">' + $(this).find("yadetail").text() + '</div-last>';
+	    fullnews = fullnews + '<div id="nid'+counter+'"><h1>' + $(this).find("title").text() + '</h1>' + $(this).find("yadetail").text() + '</div-last>';
 	    counter=counter+1;
 	});
 	window.localStorage.setItem('litenews', litenews);
@@ -72,7 +65,7 @@ function load_content() {
     }
 
     function xmlError(xml, textStatus, jqXHR) {
-	alert("Error Loading News: "+textStatus+" "+jqXHR);
+	alert("Error Loading News: "+textStatus+" "+jqXHR+" "+xml);
     }
 
 
@@ -90,12 +83,12 @@ function load_content() {
 
     function TWxmlParser(xml) {
 	var twcontent = "";
-	$(xml).find("item").each(function () {twcontent = twcontent + '<li><a href="' + $(this).find("link").text() + '"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("pubDate").text() + '</p></a></li>';});
+	$(xml).find("item").each(function () {twcontent = twcontent + '<li><a href="' + $(this).find("link").text() + '" target="_blank"><h1>' + $(this).find("title").text() + '</h1><p>' + $(this).find("pubDate").text() + '</p></a></li>';});
 	window.localStorage.setItem('twcontent', twcontent);
     }
 
     function TWxmlError(xml, textStatus, jqXHR) {
-	alert("Error Loading Twitter: "+textStatus+" "+jqXHR);
+	alert("Error Loading Twitter: "+textStatus+" "+jqXHR+" "+xml);
     }
 
 
@@ -131,8 +124,15 @@ function load_content() {
     }
 
     function YTxmlError(xml, textStatus, jqXHR) {
-	alert("Error Loading Youtube: "+textStatus+" "+jqXHR);
+	alert("Error Loading Youtube:  "+textStatus+" "+jqXHR+" "+xml);
     }
+
+
+    // ГРУЗИМ РЕКЛАМУ
+    $.get('http://ergoz.ru/rwreader/ads.php', function(data){
+	window.localStorage.setItem("ads", data);
+    });
+
 }
 
 
