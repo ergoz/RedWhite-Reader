@@ -1,4 +1,4 @@
-function beep() {
+/*function beep() {
     navigator.notification.beep(1);
 }
 
@@ -7,7 +7,6 @@ function vibrate() {
 }
 
 function deviceReady() {
-		//когда телефон полностью готов и страница прогрузилась
 	//navigator.notification.alert('ready');
 }
 
@@ -28,3 +27,4 @@ function init() {
 	document.addEventListener("menubutton", onMenuKeyDown, false);
 	document.addEventListener("backbutton", onBackKeyDown, false);
 }
+*/

@@ -173,10 +173,15 @@ function start_all_systems() {
      }
 }
 
+/**
+ * Callback вызываемый при нажатии кнопки назад на главном экране
+ */
+function onBackKeyDown() {
+	alert('back pressed');
+}
+
 
 $(document).ready(function(){
-    $('a#startup').click(function(){
-    	alert("Startup clicked");
     	start_all_systems();
-    });
+	document.addEventListener("backbutton", onBackKeyDown, false);
 });
