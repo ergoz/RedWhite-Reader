@@ -51,7 +51,7 @@ function load_content() {
 	type: "GET",
 	url: "http://ergoz.ru/rwreader/rw-rss.xml",
 	dataType: "xml",
-	timeout: 60000,
+	timeout: 30000,
 	crossDomain: true,
 	async: true,
 	success: xmlParser,
@@ -81,7 +81,7 @@ function load_content() {
 	type: "GET",
 	url: "http://ergoz.ru/rwreader/tw-rss.xml",
 	dataType: "xml",
-	timeout: 60000,
+	timeout: 30000,
 	crossDomain: true,
 	async: true,
 	success: TWxmlParser,
@@ -110,7 +110,7 @@ function load_content() {
 	type: "GET",
 	url: "http://ergoz.ru/rwreader/yt-rss.xml",
 	dataType: "xml",
-	timeout: 60000,
+	timeout: 30000,
 	crossDomain: true,
 	async: true,
 	success: YTxmlParser,
@@ -182,6 +182,5 @@ function onBackKeyDown() {
 
 
 $(document).ready(function(){
-    	start_all_systems();
-	document.addEventListener("backbutton", onBackKeyDown, false);
+    setTimeout("start_all_systems()", 2000);
 });

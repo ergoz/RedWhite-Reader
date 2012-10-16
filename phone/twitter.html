@@ -15,9 +15,8 @@
 
 	<script type="text/javascript">
     $(document).ready(function(){
-		var DB = window.localStorage;
-		var ads = DB.getItem("ads");
-		var twcontent = DB.getItem("twcontent");
+		var ads = window.localStorage.getItem("ads");
+		var twcontent = window.localStorage.getItem("twcontent");
 		$('ads').html(ads);
 		$('#tw-news').html(twcontent);
 		$("#tw-news").listview('refresh');

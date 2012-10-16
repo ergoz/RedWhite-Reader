@@ -6,7 +6,8 @@
     <title> RedWhiteReader </title>
 
     <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
-    <link rel="stylesheet" href="../system/redwhite.min.css" />
+    <link rel="stylesheet" href="../system/eds_rwreader.min.css" />
+    <link rel="stylesheet" href="../system/style.css" />
 
     <script type="text/javascript" src="../system/jquery-latest.min.js"></script>
     <script type="text/javascript" src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
@@ -16,12 +17,11 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 
-		var DB = window.localStorage;
-		var ads = DB.getItem("ads");
+		var ads = window.localStorage.getItem("ads");
 
 			var nID = $.getUrlVar('nid');
 
-			contentfull = DB.getItem('ytfullcontent');
+			contentfull = window.localStorage.getItem('ytfullcontent');
 
 			var content = contentfull.split('<div id="nid'+nID+'">');
 			var result = content[1].split('</div-last>');

@@ -6,7 +6,7 @@
     <title> RedWhiteReader </title>
 
     <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
-    <link rel="stylesheet" href="../system/redwhite.min.css" />
+    <link rel="stylesheet" href="../system/eds_rwreader.min.css" />
     <link rel="stylesheet" href="../system/style.css" />
 
     <script type="text/javascript" src="../system/jquery-latest.min.js"></script>
@@ -15,10 +15,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-		var DB = window.localStorage;
-		var ads = DB.getItem("ads");
+		var ads = window.localStorage.getItem("ads");
 		$('ads').html(ads);
-		var litenews = DB.getItem("litenews");
+		var litenews = window.localStorage.getItem("litenews");
 		$('#rss-news').html(litenews);
 		$("#rss-news").listview('refresh');
 	});
