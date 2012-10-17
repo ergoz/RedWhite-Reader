@@ -110,5 +110,5 @@ function start_all_systems() {
  * ЗАПУСК ВСЕХ СИСТЕМ С ТАЙМАУТОМ!
  */
 $(document).ready(function(){
-    setTimeout("start_all_systems()", 2000);
+    setTimeout("start_all_systems()", 1000);
 });
