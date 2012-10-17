@@ -24,8 +24,10 @@
         objnews = JSON.parse(mnews);
 
         var ctnews = '';
-        objnews.forEach(function(i, item){
-            ctnews = ctnews + '<li><a href="./detail.html?nid='+ i + '" data-ajax="false">' + item.title + '</a></li>';
+        var counter = 0;
+        objnews.forEach(function(item){
+            ctnews = ctnews + '<li><a href="./detail.html?nid='+ counter + '" data-ajax="false">' + item.title + '</a></li>';
+            counter = counter + 1;
         });
 
         $('#rss-news').html(ctnews);

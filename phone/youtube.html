@@ -24,8 +24,10 @@
         objyoutube = JSON.parse(myoutube);
 
         var ctyoutube = '';
+        var counter = 0;
         objyoutube.forEach(function(i, item){
-        	ctyoutube = ctyoutube + '<li><a href="./detail-yt.html?nid='+ i + '" data-ajax="false">' + item.title + '</a></li>';
+        	ctyoutube = ctyoutube + '<li><a href="./detail-yt.html?nid='+ counter + '" data-ajax="false">' + item.title + '</a></li>';
+        	counter = counter + 1;
         });
 
         $('#rss-news').html(ctyoutube);

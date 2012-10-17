@@ -23,4 +23,8 @@ table.maintable {
 /* Flicking fix on jqm */
 .ui-page {
     -webkit-backface-visibility: hidden !important;
+    outline: none;
+}
+body {
+	margin: 0 !important;
 }
