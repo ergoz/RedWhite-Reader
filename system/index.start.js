@@ -28,6 +28,65 @@ function GetSystem(){
 }
 
 
+
+/**
+ * Обработка Новостей ФК Спартак Москва
+ * @param {Object} data Объект полученный из JSON запроса
+ */
+function ParseNews(data) {
+    window.localStorage.setItem("news", data);
+}
+
+/**
+ * Обработка Twitter ФК Спартак Москва
+ * @param {Object} data Объект полученный из JSON запроса
+ */
+function ParseTwitter(data) {
+    window.localStorage.setItem("twitter", data);
+}
+
+/**
+ * Обработка Таблицы Чемпионата России
+ * @param {Object} data Объект полученный из JSON запроса
+ */
+function ParseTables(data) {
+    window.localStorage.setItem("tables", data);
+}
+
+/**
+ * Обработка Youtube ленты ФК Спартак Москва
+ * @param {Object} data Объект полученный из JSON запроса
+ */
+function ParseYoutube(data) {
+    window.localStorage.setItem("youtube", data);
+}
+
+/**
+ * Обработка Онлайн Теле Трансляций
+ * @param {Object} data Объект полученный из JSON запроса
+ */
+function ParseOnlineTV(data) {
+    window.localStorage.setItem("onlinetv", data);
+}
+
+/**
+ * Обработка Онлайн Текстовых Трансляций
+ * @param {Object} data Объект полученный из JSON запроса
+ */
+function ParseOnlineTEXT(data) {
+    window.localStorage.setItem("onlinetext", data);
+}
+
+/**
+ * Обработка Календаря ФК Спартак Москва
+ * @param {Object} data Объект полученный из JSON запроса
+ */
+function ParseCalendar(data) {
+    window.localStorage.setItem("news", data);
+}
+
+
+
 /**
  * Функция выполняет загрузку контента
  */
@@ -54,24 +113,17 @@ function load_content() {
 	    },
 	   function(data, textStatus) {
 		if(textStatus == "success") {
-		    $.include('./parsers/news.js');
-		    //$.include('./parsers/twitter.js');
-		    //$.include('./parsers/tables.js');
-		    //$.include('./parsers/youtube.js');
-		    //$.include('./parsers/online_text.js');
-		    //$.include('./parsers/online_tv.js');
-		    //$.include('./parsers/calendar.js');
 
 		    ParseNews(data.news);
 		    alert($(data.news).text());
 		    alert(window.localStorage.getItem("news"));
 
-		    //ParseTwitter(data.twitter);
-		    //ParseTables(data.tables);
-		    //ParseYoutube(data.youtube);
-		    //ParseOnlineTEXT(data.online_text);
-		    //ParseOnlineTV(data.online_tv);
-		    //ParseCalendar(data.calendar);
+		    ParseTwitter(data.twitter);
+		    ParseTables(data.tables);
+		    ParseYoutube(data.youtube);
+		    ParseOnlineTEXT(data.online_text);
+		    ParseOnlineTV(data.online_tv);
+		    ParseCalendar(data.calendar);
 		} else {
 		    alert("Ошибка: "+textStatus);
 		}
