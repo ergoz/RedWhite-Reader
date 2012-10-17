@@ -33,23 +33,23 @@ function GetSystem(){
  * @param {Object} data
  */
 function ParseMyResult(data){
-	$.include('./parsers/news.js');
-	$.include('./parsers/twitter.js');
-	$.include('./parsers/tables.js');
-	$.include('./parsers/youtube.js');
-	$.include('./parsers/online_text.js');
-	$.include('./parsers/online_tv.js');
-	$.include('./parsers/calendar.js');
+	//$.include('./parsers/news.js');
+	//$.include('./parsers/twitter.js');
+	//$.include('./parsers/tables.js');
+	//$.include('./parsers/youtube.js');
+	//$.include('./parsers/online_text.js');
+	//$.include('./parsers/online_tv.js');
+	//$.include('./parsers/calendar.js');
 
-	ParseNews(data.news);
+	//ParseNews(data.news);
 	alert( $(data).text() );
 
-	ParseTwitter(data.twitter);
-	ParseTables(data.tables);
-	ParseYoutube(data.youtube);
-	ParseOnlineTEXT(data.online_text);
-	ParseOnlineTV(data.online_tv);
-	ParseCalendar(data.calendar);
+	//ParseTwitter(data.twitter);
+	//ParseTables(data.tables);
+	//ParseYoutube(data.youtube);
+	//ParseOnlineTEXT(data.online_text);
+	//ParseOnlineTV(data.online_tv);
+	//ParseCalendar(data.calendar);
 }
 
 
