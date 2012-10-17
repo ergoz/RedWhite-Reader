@@ -41,8 +41,6 @@ function load_content() {
     //window.localStorage.setItem('onlinetext',"");
     //window.localStorage.setItem('calendar',"");
 
-
-
     $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?",
 	    {
 		format: "json",
@@ -56,26 +54,24 @@ function load_content() {
 	    },
 	   function(data, textStatus) {
 		if(textStatus == "success") {
-		    $.each(data.news, function(i,item){
-			alert("<p>"+item.id+" - "+item.title+"<p>");
+		    $.include('./parsers/news.js');
+		    //$.include('./parsers/twitter.js');
+		    //$.include('./parsers/tables.js');
+		    //$.include('./parsers/youtube.js');
+		    //$.include('./parsers/online_text.js');
+		    //$.include('./parsers/online_tv.js');
+		    //$.include('./parsers/calendar.js');
 
-			//$.include('./parsers/news.js');
-			//$.include('./parsers/twitter.js');
-			//$.include('./parsers/tables.js');
-			//$.include('./parsers/youtube.js');
-			//$.include('./parsers/online_text.js');
-			//$.include('./parsers/online_tv.js');
-			//$.include('./parsers/calendar.js');
+		    ParseNews(data.news);
+		    alert($(data.news).text());
+		    alert(window.localStorage.getItem("news"));
 
-			//ParseNews(data.news);
-			//ParseTwitter(data.twitter);
-			//ParseTables(data.tables);
-			//ParseYoutube(data.youtube);
-			//ParseOnlineTEXT(data.online_text);
-			//ParseOnlineTV(data.online_tv);
-			//ParseCalendar(data.calendar);
-
-		    });
+		    //ParseTwitter(data.twitter);
+		    //ParseTables(data.tables);
+		    //ParseYoutube(data.youtube);
+		    //ParseOnlineTEXT(data.online_text);
+		    //ParseOnlineTV(data.online_tv);
+		    //ParseCalendar(data.calendar);
 		} else {
 		    alert("Ошибка: "+textStatus);
 		}
