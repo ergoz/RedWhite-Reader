@@ -27,6 +27,33 @@ function GetSystem(){
     }
 }
 
+
+/**
+ * Функция парсинга контента из JSON запроса
+ * @param {Object} data
+ */
+function ParseMyResult(data){
+	$.include('./parsers/news.js');
+	$.include('./parsers/twitter.js');
+	$.include('./parsers/tables.js');
+	$.include('./parsers/youtube.js');
+	$.include('./parsers/online_text.js');
+	$.include('./parsers/online_tv.js');
+	$.include('./parsers/calendar.js');
+
+	ParseNews(data.news);
+	alert( $(data).text() );
+
+	ParseTwitter(data.twitter);
+	ParseTables(data.tables);
+	ParseYoutube(data.youtube);
+	ParseOnlineTEXT(data.online_text);
+	ParseOnlineTV(data.online_tv);
+	ParseCalendar(data.calendar);
+}
+
+
+
 /**
  * Функция выполняет загрузку контента
  */
@@ -41,27 +68,6 @@ function load_content() {
     //window.localStorage.setItem('calendar',"");
 
     $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?", { format: "json", news: "true", twitter: "true", tables: "true", youtube: "true", online_tv: "true", online_text: "true", calendar: "true" }, ParseMyResult);
-
-    function ParseMyResult(data){
-	$.include('./parsers/news.js');
-	$.include('./parsers/twitter.js');
-	$.include('./parsers/tables.js');
-	$.include('./parsers/youtube.js');
-	$.include('./parsers/online_text.js');
-	$.include('./parsers/online_tv.js');
-	$.include('./parsers/calendar.js');
-
-	ParseNews(data.news);
-	alert($(data.news).text());
-
-	ParseTwitter(data.twitter);
-	ParseTables(data.tables);
-	ParseYoutube(data.youtube);
-	ParseOnlineTEXT(data.online_text);
-	ParseOnlineTV(data.online_tv);
-	ParseCalendar(data.calendar);
-    }
-
 
     // ГРУЗИМ РЕКЛАМУ
     $.get('http://ergoz.ru/rwreader/ads.php', function(data){
