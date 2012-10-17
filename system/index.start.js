@@ -115,8 +115,7 @@ function load_content() {
 		if(textStatus == "success") {
 
 		    ParseNews(data.news);
-		    alert($(data.news).text());
-		    alert(window.localStorage.getItem("news"));
+		    alert($(window.localStorage.getItem("news")).text());
 
 		    ParseTwitter(data.twitter);
 		    ParseTables(data.tables);
