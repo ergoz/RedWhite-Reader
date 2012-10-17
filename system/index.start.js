@@ -104,6 +104,7 @@ function load_content() {
     //window.localStorage.setItem('onlinetv',"");
     //window.localStorage.setItem('onlinetext',"");
     //window.localStorage.setItem('calendar',"");
+    var reqdate = new Date();
 
     $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?",
 	    {
@@ -114,7 +115,8 @@ function load_content() {
 		youtube: "true",
 		online_tv: "true",
 		online_text: "true",
-		calendar: "true"
+		calendar: "true",
+		date: reqdate.toLocaleString()
 	    },
 	   function(data, textStatus) {
 		if(textStatus == "success") {
