@@ -21,14 +21,14 @@
 	    var mtables = window.localStorage.getItem("tables");
         var objtables = new Object;
         objtables = JSON.parse(mtables);
-        $('content').html(objtables.content);
+        $('#content').html(objtables[0].content);
     });
     </script>
 
    <style>.maintable{font-size: 0.7 em;}</style>
 
 </head>
-	<body onload="init();">
+	<body>
 
 			<header data-role="header" data-theme="a" data-position="fixed">
 				<a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>
@@ -50,9 +50,9 @@
 			</header>
 
 
-			<content data-role="content" data-theme="a" >
+			<div id="content" data-role="content" data-theme="a" >
 
-			</content>
+			</div>
 
 
 		<footer data-role="footer" data-position="fixed">

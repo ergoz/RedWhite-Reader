@@ -19,17 +19,16 @@
 	$(document).ready(function(){
 
 		var ads = window.localStorage.getItem("ads");
+        $('ads').html(ads);
 
 			var nID = $.getUrlVar('nid');
 
-			contentfull = window.localStorage.getItem('ytfullcontent');
 
-			var content = contentfull.split('<div id="nid'+nID+'">');
-			var result = content[1].split('</div-last>');
+	        var mnews = window.localStorage.getItem("news");
+	        var objnews = new Object;
+	        objnews = JSON.parse(mnews);
 
-			$('#detail-content').html(result[0]);
-
-			$('ads').html(ads);
+	        $('#detail-content').html('<h2>'+objnews[nID].title+'</h2><p>'+objnews[nID].content+'</p>');
         });
 
    </script>
