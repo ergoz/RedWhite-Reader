@@ -19,17 +19,19 @@
 		var ads = window.localStorage.getItem("ads");
 		$('ads').html(ads);
 
-		var twitter = window.localStorage.getItem("twitter");
+	    var mtwitter = window.localStorage.getItem("twitter");
+	    var objtwitter = new Object;
+	    objtwitter = JSON.parse(mtwitter);
 
-	            var tweets = '';
-	            $.each(twitter, function(i,item){
-	        	     tweets = tweets + '<li><a href="'+ item.link + '" data-ajax="false" target="_blank" rel="external"><h1>' + item.title + '</h1><p>' + item.published + '</p></a></li>';
-	            }
+	    var cttwitter = '';
+	    objtwitter.forEach(function(item){
+	            cttwitter = cttwitter + '<li><a href="'+ item.link + '" data-ajax="false" target="_blank" rel="external"><h1>' + item.title + '</h1><p>' + item.published + '</p></a></li>';
+	    });
 
-		$('#tw-news').html(tweets);
-		$("#tw-news").listview('refresh');
-        });
-   </script>
+	    $('#tw-news').html(cttwitter);
+	    $("#tw-news").listview('refresh');
+    });
+    </script>
 
 </head>
 	<body>
@@ -68,18 +70,17 @@
 			</div>
 
 
-		<footer data-role="footer" data-position="fixed">
-				<div data-role="navbar" class="nav-footer" data-iconpos="top">
-				<center>
-					<ul>
-					<li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
-						<li><a href="./tables.html" id="charts" data-icon="custom"  data-ajax="false">Таблицы</a></li>
-						<li><a href="./detail-yt.html" id="youtube" data-icon="custom">Youtube</a></li>
-						<li><a href="#" onclick="alert('Online in dev');" id="online" data-icon="custom">Online</a></li>
-						<li><a href="#" onclick="alert('Расписание in dev');" id="calendar" data-icon="custom">Расписание</a></li>
-					</ul>
-				</center>
-				</div></footer>
+        <footer data-role="footer" data-position="fixed">
+                <div data-role="navbar" class="nav-footer" data-iconpos="top">
+                    <ul>
+                        <li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
+                        <li><a href="./tables.html" id="charts" data-icon="custom"  data-ajax="false">Таблицы</a></li>
+                        <li><a href="./youtube.html" id="youtube" data-icon="custom">Youtube</a></li>
+                        <li><a href="#" onclick="alert('Online in dev');" id="online" data-icon="custom">Online</a></li>
+                        <li><a href="#" onclick="alert('Расписание in dev');" id="calendar" data-icon="custom">Расписание</a></li>
+                    </ul>
+                </div>
+        </footer>
 
 	</body>
 </html>

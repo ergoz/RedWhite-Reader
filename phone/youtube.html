@@ -19,16 +19,17 @@
         var ads = window.localStorage.getItem("ads");
         $('ads').html(ads);
 
+        var myoutube = window.localStorage.getItem("youtube");
+        var objyoutube = new Object;
+        objyoutube = JSON.parse(myoutube);
 
-        var youtube = window.localStorage.getItem("youtube");
+        var ctyoutube = '';
+        objyoutube.forEach(function(i, item){
+        	ctyoutube = ctyoutube + '<li><a href="./detail-yt.html?nid='+ i + '" data-ajax="false">' + item.title + '</a></li>';
+        });
 
-        var tubes = '';
-        $.each(news, function(i,item){
-            tubes = tubes + '<li><a href="./detail-yt.html?nid='+ item.id + '" data-ajax="false">' + item.title + '</a></li>';
-        }
-
-        $('#yt-news').html(tubes);
-        $("#yt-news").listview('refresh');
+        $('#rss-news').html(ctyoutube);
+        $("#rss-news").listview('refresh');
         });
    </script>
 
@@ -66,7 +67,7 @@
                     <ul>
                         <li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
                         <li><a href="./tables.html" id="charts" data-icon="custom"  data-ajax="false">Таблицы</a></li>
-                        <li><a href="./detail-yt.html" id="youtube" data-icon="custom">Youtube</a></li>
+                        <li><a href="./youtube.html" id="youtube" data-icon="custom">Youtube</a></li>
                         <li><a href="#" onclick="alert('Online in dev');" id="online" data-icon="custom">Online</a></li>
                         <li><a href="#" onclick="alert('Расписание in dev');" id="calendar" data-icon="custom">Расписание</a></li>
                     </ul>

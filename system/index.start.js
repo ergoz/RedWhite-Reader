@@ -34,7 +34,7 @@ function GetSystem(){
  * @param {Object} data Объект полученный из JSON запроса
  */
 function ParseNews(data) {
-    window.localStorage.setItem("news", data);
+    window.localStorage.setItem("news", JSON.stringify(data));
 }
 
 /**
@@ -42,7 +42,7 @@ function ParseNews(data) {
  * @param {Object} data Объект полученный из JSON запроса
  */
 function ParseTwitter(data) {
-    window.localStorage.setItem("twitter", data);
+    window.localStorage.setItem("twitter", JSON.stringify(data));
 }
 
 /**
@@ -50,7 +50,7 @@ function ParseTwitter(data) {
  * @param {Object} data Объект полученный из JSON запроса
  */
 function ParseTables(data) {
-    window.localStorage.setItem("tables", data);
+    window.localStorage.setItem("tables", JSON.stringify(data));
 }
 
 /**
@@ -58,7 +58,7 @@ function ParseTables(data) {
  * @param {Object} data Объект полученный из JSON запроса
  */
 function ParseYoutube(data) {
-    window.localStorage.setItem("youtube", data);
+    window.localStorage.setItem("youtube", JSON.stringify(data));
 }
 
 /**
@@ -66,7 +66,7 @@ function ParseYoutube(data) {
  * @param {Object} data Объект полученный из JSON запроса
  */
 function ParseOnlineTV(data) {
-    window.localStorage.setItem("onlinetv", data);
+    window.localStorage.setItem("onlinetv", JSON.stringify(data));
 }
 
 /**
@@ -74,7 +74,7 @@ function ParseOnlineTV(data) {
  * @param {Object} data Объект полученный из JSON запроса
  */
 function ParseOnlineTEXT(data) {
-    window.localStorage.setItem("onlinetext", data);
+    window.localStorage.setItem("onlinetext", JSON.stringify(data));
 }
 
 /**
@@ -82,7 +82,7 @@ function ParseOnlineTEXT(data) {
  * @param {Object} data Объект полученный из JSON запроса
  */
 function ParseCalendar(data) {
-    window.localStorage.setItem("news", data);
+    window.localStorage.setItem("calendar", JSON.stringify(data));
 }
 
 
@@ -94,16 +94,16 @@ function load_content() {
 
     // ГРУЗИМ РЕКЛАМУ
     $.get('http://ergoz.ru/rwreader/ads.php', function(data){
-	window.localStorage.setItem("ads", data);
+		window.localStorage.setItem("ads", data);
     });
 
-    //window.localStorage.setItem('news',"");
-    //window.localStorage.setItem('twitter',"");
-    //window.localStorage.setItem('tables',"");
-    //window.localStorage.setItem('youtube',"");
-    //window.localStorage.setItem('onlinetv',"");
-    //window.localStorage.setItem('onlinetext',"");
-    //window.localStorage.setItem('calendar',"");
+    window.localStorage.setItem('news',"");
+    window.localStorage.setItem('twitter',"");
+    window.localStorage.setItem('tables',"");
+    window.localStorage.setItem('youtube',"");
+    window.localStorage.setItem('onlinetv',"");
+    window.localStorage.setItem('onlinetext',"");
+    window.localStorage.setItem('calendar',"");
     var reqdate = new Date();
 
     $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?",
@@ -120,7 +120,7 @@ function load_content() {
 	    },
 	   function(data, textStatus) {
 		if(textStatus == "success") {
-		    alert("all good - parsing started");
+		    //alert("Статус: "+textStatus+" -> Начали парсить");
 		    ParseNews(data.news);
 		    ParseTwitter(data.twitter);
 		    ParseTables(data.tables);
@@ -128,11 +128,14 @@ function load_content() {
 		    ParseOnlineTEXT(data.online_text);
 		    ParseOnlineTV(data.online_tv);
 		    ParseCalendar(data.calendar);
-		    alert("all good - parsing finished");
+		    //alert("Статус: "+textStatus+" -> Закончили парсить");
+			GetSystem();
 		} else {
-		    alert("Ошибка: "+textStatus);
+		    alert("Ошибка: "+textStatus+"\n"+"Обновление контента небыло загружено. \nДля его обновления закройте приложение и откройте заново или используйте устаревшую версию.");
+			GetSystem();
 		}
 	    });
+
 }
 
 
@@ -161,9 +164,6 @@ function SetPhoneSystem() {
 function start_all_systems() {
     if(is_system()) {
 	load_content();
-	//GetSystem();
-	var ads = window.localStorage.getItem("ads");
-	$('ads').html(ads);
     } else {
 	$(".first-run").css("display","block");
 	load_content();
@@ -174,8 +174,8 @@ function start_all_systems() {
 
 
 /**
- * ЗАПУСК ВСЕХ СИСТЕМ С ТАЙМАУТОМ!
+ * ЗАПУСК ВСЕХ СИСТЕМ
  */
 $(document).ready(function(){
-    setTimeout("start_all_systems()", 1000);
+    start_all_systems();
 });
