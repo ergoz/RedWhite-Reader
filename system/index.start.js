@@ -52,6 +52,8 @@ function load_content() {
 	$.include('./parsers/calendar.js');
 
 	ParseNews(data.news);
+	alert($(data.news).text());
+
 	ParseTwitter(data.twitter);
 	ParseTables(data.tables);
 	ParseYoutube(data.youtube);
