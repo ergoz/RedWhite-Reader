@@ -40,9 +40,19 @@ function load_content() {
     //window.localStorage.setItem('onlinetv',"");
     //window.localStorage.setItem('onlinetext',"");
     //window.localStorage.setItem('calendar',"");
+    alert( "start request" );
 
-    $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?", { format: "json", news: "true", twitter: "true", tables: "true", youtube: "true", online_tv: "true", online_text: "true", calendar: "true" },
-	    function(data) {
+    var jqxhr = $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?", { format: "json" } , function() {
+	  alert("success "+textStatus);
+	})
+	.success(function() { alert("second success "+textStatus); })
+	.error(function() { alert("error: "+textStatus); })
+	.complete(function() { alert("complete "+textStatus); });
+
+
+
+   // $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?", { format: "json", news: "true", twitter: "true", tables: "true", youtube: "true", online_tv: "true", online_text: "true", calendar: "true" },
+//	    function(data) {
 		//$.include('./parsers/news.js');
 		//$.include('./parsers/twitter.js');
 		//$.include('./parsers/tables.js');
@@ -52,7 +62,7 @@ function load_content() {
 		//$.include('./parsers/calendar.js');
 
 		//ParseNews(data.news);
-		alert( $(data).text() );
+	//	alert( $(data).text() );
 
 		//ParseTwitter(data.twitter);
 		//ParseTables(data.tables);
@@ -60,13 +70,15 @@ function load_content() {
 		//ParseOnlineTEXT(data.online_text);
 		//ParseOnlineTV(data.online_tv);
 		//ParseCalendar(data.calendar);
-    	    }
-    );
+    //	    }
+   // );
 
     // ГРУЗИМ РЕКЛАМУ
     $.get('http://ergoz.ru/rwreader/ads.php', function(data){
 	window.localStorage.setItem("ads", data);
     });
+
+    jqxhr.complete(function(){ alert("second complete "+textStatus); });
 
 }
 
