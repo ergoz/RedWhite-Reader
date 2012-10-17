@@ -92,6 +92,11 @@ function ParseCalendar(data) {
  */
 function load_content() {
 
+    // ГРУЗИМ РЕКЛАМУ
+    $.get('http://ergoz.ru/rwreader/ads.php', function(data){
+	window.localStorage.setItem("ads", data);
+    });
+
     //window.localStorage.setItem('news',"");
     //window.localStorage.setItem('twitter',"");
     //window.localStorage.setItem('tables',"");
@@ -113,9 +118,11 @@ function load_content() {
 	    },
 	   function(data, textStatus) {
 		if(textStatus == "success") {
-
+		    alert("all good - parsing started");
 		    ParseNews(data.news);
-		    alert($(window.localStorage.getItem("news")).text());
+
+		    var omg_news = window.localStorage.getItem("news");
+		    alert($(omg_news).text());
 
 		    ParseTwitter(data.twitter);
 		    ParseTables(data.tables);
@@ -123,15 +130,11 @@ function load_content() {
 		    ParseOnlineTEXT(data.online_text);
 		    ParseOnlineTV(data.online_tv);
 		    ParseCalendar(data.calendar);
+		    alert("all good - parsing finished");
 		} else {
 		    alert("Ошибка: "+textStatus);
 		}
 	    });
-
-    // ГРУЗИМ РЕКЛАМУ
-    $.get('http://ergoz.ru/rwreader/ads.php', function(data){
-	window.localStorage.setItem("ads", data);
-    });
 }
 
 
