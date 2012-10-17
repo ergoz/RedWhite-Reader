@@ -122,10 +122,6 @@ function load_content() {
 		if(textStatus == "success") {
 		    alert("all good - parsing started");
 		    ParseNews(data.news);
-
-		    var omg_news = window.localStorage.getItem("news");
-		    alert($(omg_news).text());
-
 		    ParseTwitter(data.twitter);
 		    ParseTables(data.tables);
 		    ParseYoutube(data.youtube);
