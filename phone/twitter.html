@@ -7,7 +7,7 @@
     <title> RedWhiteReader </title>
 
     <link rel="stylesheet" href="../system/jquery.mobile-1.2.0-alpha.1.min.css" />
-    <link rel="stylesheet" href="../system/redwhite.min.css" />
+    <link rel="stylesheet" href="../system/eds_rwreader.min.css" />
     <link rel="stylesheet" href="../system/style.css" />
 
     <script type="text/javascript" src="../system/jquery-latest.min.js"></script>
@@ -17,15 +17,22 @@
 	<script type="text/javascript">
     $(document).ready(function(){
 		var ads = window.localStorage.getItem("ads");
-		var twcontent = window.localStorage.getItem("twcontent");
 		$('ads').html(ads);
-		$('#tw-news').html(twcontent);
+
+		var twitter = window.localStorage.getItem("twitter");
+
+	            var tweets = '';
+	            $.each(twitter, function(i,item){
+	        	     tweets = tweets + '<li><a href="'+ item.link + '" data-ajax="false" target="_blank" rel="external"><h1>' + item.title + '</h1><p>' + item.published + '</p></a></li>';
+	            }
+
+		$('#tw-news').html(tweets);
 		$("#tw-news").listview('refresh');
         });
    </script>
 
 </head>
-	<body onload="init();">
+	<body>
 
 			<header data-role="header" data-theme="a" data-position="fixed">
 			<a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>

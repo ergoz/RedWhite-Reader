@@ -17,15 +17,23 @@
     <script type="text/javascript">
     $(document).ready(function(){
         var ads = window.localStorage.getItem("ads");
-        var ytcontent = window.localStorage.getItem("ytcontent");
         $('ads').html(ads);
-        $('#yt-news').html(ytcontent);
+
+
+        var youtube = window.localStorage.getItem("youtube");
+
+        var tubes = '';
+        $.each(news, function(i,item){
+            tubes = tubes + '<li><a href="./detail-yt.html?nid='+ item.id + '" data-ajax="false">' + item.title + '</a></li>';
+        }
+
+        $('#yt-news').html(tubes);
         $("#yt-news").listview('refresh');
         });
    </script>
 
 </head>
-    <body onload="init();">
+    <body>
 
             <header data-role="header" data-theme="a" data-position="fixed">
             <a href="./index.html" data-role="button" data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" data-inline="true">Главная</a>

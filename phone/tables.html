@@ -17,9 +17,9 @@
 	<script type="text/javascript">
     $(document).ready(function(){
 		var ads = window.localStorage.getItem("ads");
-		var tablescontent = window.localStorage.getItem("main-table");
-		$('ads').html(ads);
-		$('content').html(tablescontent);
+	    $('ads').html(ads);
+		var tables = window.localStorage.getItem("tables");
+		$('content').html(tables.content);
         });
    </script>
 

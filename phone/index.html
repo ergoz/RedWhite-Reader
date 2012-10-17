@@ -18,8 +18,15 @@
     $(document).ready(function(){
 		var ads = window.localStorage.getItem("ads");
 		$('ads').html(ads);
-		var litenews = window.localStorage.getItem("litenews");
-		$('#rss-news').html(litenews);
+
+		var news = window.localStorage.getItem("news");
+
+		var сnews = '';
+		$.each(news, function(i,item){
+		    сnews = сnews + '<li><a href="./detail.html?nid='+ item.id + '" data-ajax="false">' + item.title + '</a></li>';
+		}
+
+		$('#rss-news').html(сnews);
 		$("#rss-news").listview('refresh');
 	});
 </script>
