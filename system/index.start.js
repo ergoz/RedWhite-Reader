@@ -42,12 +42,12 @@ function load_content() {
     //window.localStorage.setItem('calendar',"");
     alert( "start request" );
 
-    var jqxhr = $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?", { format: "json" } , function() {
+    var jqxhr = $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?", { format: "json" } , function(data, textStatus) {
 	  alert("success "+textStatus);
 	})
-	.success(function() { alert("second success "+textStatus); })
-	.error(function() { alert("error: "+textStatus); })
-	.complete(function() { alert("complete "+textStatus); });
+	.success(function(data, textStatus) { alert("second success "+textStatus); })
+	.error(function(data, textStatus) { alert("error: "+textStatus); })
+	.complete(function(data, textStatus) { alert("complete "+textStatus); });
 
 
 
@@ -78,7 +78,7 @@ function load_content() {
 	window.localStorage.setItem("ads", data);
     });
 
-    jqxhr.complete(function(){ alert("second complete "+textStatus); });
+    jqxhr.complete(function(data, textStatus){ alert("second complete "+textStatus); });
 
 }
 
