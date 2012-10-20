@@ -127,6 +127,7 @@ function load_content() {
 		    ParseOnlineTV(data.online_tv);
 		    ParseCalendar(data.calendar);
 		    //alert("Статус: "+textStatus+" -> Закончили парсить");
+		    $('.progress-console').html("Контент загружен!");
 			GetSystem();
 		} else {
 		    alert("Ошибка: "+textStatus+"\n"+"Обновление контента небыло загружено. \nДля его обновления закройте приложение и откройте заново или используйте устаревшую версию.");

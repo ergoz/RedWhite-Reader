@@ -2,7 +2,7 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <title> RedWhiteReader </title>
 
     <link rel="stylesheet" href="./system/jquery.mobile-1.2.0-alpha.1.min.css" />
@@ -16,21 +16,20 @@
 </head>
 	<body>
 			<header data-role="header" data-theme="a" data-position="fixed">
-					<a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse">Назад</a>
-					<h1>Red White Reader</h1>
-					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
-						<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
-							<div data-role="header" data-theme="a" class="ui-corner-top">
-								<h1>Выход</h1>
-							</div>
-							<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
-								<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
-								<center>
-									<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
-									<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
-								</center>
-							</div>
-						</div>
+				<h1>RedWhite Reader</h1>
+                    <!-- Начало кнопки выхода -->
+                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Выход</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки выхода -->
 			</header>
 
 
@@ -66,10 +65,11 @@
 					<h3>Первый запуск приложения</h3>
 					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства.
 					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет.
-					Однако вы можете изменить тип устройства в меню настроек.
+					Однако вы можете изменить тип устройства в меню настроек.<br>
+					В данный момент поддерживается только вид для Смартфонов. Нажмите кнопку <b>ТОЛЬКО</b> после того как контент будет загружен.
 					</p>
-					<a onclick="SetPhoneSystem(); return false;" href="#" id="pad" data-role="button" data-icon="rw-pad">Tablet Pads</a>
-					<a onclick="SetPhoneSystem(); return false;" href="#" id="phone" data-role="button" data-icon="rw-phone">SmartPhone</a>
+					<a onclick="SetPhoneSystem(); return false;" href="#" id="pad" data-role="button" data-icon="rw-pad">Планшет</a>
+					<a onclick="SetPhoneSystem(); return false;" href="#" id="phone" data-role="button" data-icon="rw-phone">Смартфон</a>
 				</center>
 				</div>
 			</div>
