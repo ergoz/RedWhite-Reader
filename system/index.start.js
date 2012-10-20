@@ -97,15 +97,6 @@ function load_content() {
 		window.localStorage.setItem("ads", data);
     });
 
-    window.localStorage.setItem('news',"");
-    window.localStorage.setItem('twitter',"");
-    window.localStorage.setItem('tables',"");
-    window.localStorage.setItem('youtube',"");
-    window.localStorage.setItem('onlinetv',"");
-    window.localStorage.setItem('onlinetext',"");
-    window.localStorage.setItem('calendar',"");
-    var reqdate = new Date();
-
     $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?",
 	    {
 		format: "json",
@@ -115,11 +106,18 @@ function load_content() {
 		youtube: "true",
 		online_tv: "true",
 		online_text: "true",
-		calendar: "true",
-		date: reqdate.toLocaleString()
+		calendar: "true"
 	    },
 	   function(data, textStatus) {
 		if(textStatus == "success") {
+		    window.localStorage.setItem('news',"");
+		    window.localStorage.setItem('twitter',"");
+		    window.localStorage.setItem('tables',"");
+		    window.localStorage.setItem('youtube',"");
+		    window.localStorage.setItem('onlinetv',"");
+		    window.localStorage.setItem('onlinetext',"");
+		    window.localStorage.setItem('calendar',"");
+
 		    //alert("Статус: "+textStatus+" -> Начали парсить");
 		    ParseNews(data.news);
 		    ParseTwitter(data.twitter);
