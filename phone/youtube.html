@@ -36,9 +36,8 @@
    </script>
 
 </head>
-    <body>
-
-            <header data-role="header" data-theme="a" data-position="fixed">
+    <body data-fullscreen="false">
+            <div data-role="header" data-theme="a" data-position="fixed" data-id="header">
                 <!-- Начало кнопки МЕНЮ -->
                     <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
                     <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
@@ -46,9 +45,9 @@
                             <h1>Меню</h1>
                         </div>
                         <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
-                                <a href="./chat.html" data-role="button" data-inline="true" data-theme="a">Чат</a>
-                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a">Настройки</a>
-                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Закрыть меню</a>
+                                <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
+                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть меню</a><br>
                         </div>
                     </div>
                     <!-- Конец кнопки МЕНЮ -->
@@ -69,16 +68,16 @@
                         </div>
                     </div>
                     <!-- Конец кнопки выхода -->
-            </header>
-
-
-            <div data-role="content" data-theme="a" >
-                <ul id="yt-news" data-role="listview">
-                </ul>
             </div>
 
 
-      <footer data-role="footer" data-position="fixed">
+            <div data-role="content" data-theme="a" >
+                	<ul id="yt-news" data-role="listview">
+                	</ul>
+            </div>
+
+
+      <div data-role="footer" data-position="fixed" data-id="footer">
                 <div data-role="navbar" class="nav-footer" data-iconpos="top">
                     <ul>
                         <li><a href="./index.html" id="news" data-icon="custom"  data-ajax="false">Новости</a></li>
@@ -88,7 +87,6 @@
                         <li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom">Расписание</a></li>
                     </ul>
                 </div>
-        </footer>
-
+        </div>
     </body>
 </html>
