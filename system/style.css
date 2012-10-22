@@ -17,14 +17,10 @@
 #calendar .ui-icon { background:  url(../system/icons/calendar.png) 50% 50% no-repeat; background-size: 24px 30px; }
 
 table.maintable {
-	width: 100%;
+	width: 400px;
 }
 
 /* Flicking fix on jqm */
 .ui-page {
     -webkit-backface-visibility: hidden !important;
-    outline: none;
-}
-body {
-	margin: 0 !important;
 }

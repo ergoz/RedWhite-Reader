@@ -12,29 +12,11 @@
 
     <script type="text/javascript" src="../system/jquery-latest.min.js"></script>
     <script type="text/javascript" src="../system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
-    <script type="text/javascript" src="../system/jquery.eds.uriparser.js"></script>
 	<script type="text/javascript" src="../cordova.js"></script>
-
-	<script type="text/javascript">
-	$(document).ready(function(){
-
-		var ads = window.localStorage.getItem("ads");
-        $('ads').html(ads);
-
-			var nID = $.getUrlVar('nid');
-
-
-	        var mnews = window.localStorage.getItem("youtube");
-	        var objnews = new Object;
-	        objnews = JSON.parse(mnews);
-
-	        $('#detail-content').html('<h2>'+objnews[nID].title+'</h2><p>'+objnews[nID].content+'</p>');
-        });
-
-   </script>
-
+	<script type="text/javascript" src="../chat.api.js"></script>
 </head>
-	<body>
+	<body onload="init()">
+
 			<header data-role="header" data-theme="a" data-position="fixed">
                 <!-- Начало кнопки МЕНЮ -->
                     <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
@@ -69,12 +51,30 @@
 			</header>
 
 
-			<content id="detail-content" data-role="content" data-theme="a" >
-			</content>
+			<div data-role="content" data-theme="a" >
+				<div id="chat">
+				
+				<span id="phoneGapStatus"></span><br />
+				
+				<span id="appId"></span><br />
+				<span id="ownerId"></span><br />
+				<span id="authKey"></span><br />
+				<span id="authSecret"></span><br />
+				
+				<span id="usersCount"></span><br />
+				<ul id="users"></ul><br />
+				
+				<input value="" name="login" id="login"><br />
+				<input value="" name="password" id="password"><br />
+				
+				</div>
+			</div>
 
 
-		<footer data-role="footer" data-position="fixed">
-		<ads></ads>
-		</footer>
+        <footer data-role="footer" data-position="fixed">
+              <a href="#" data-role="button" id="auth">Авторизация</a>
+              <a href="#" data-role="button" id="register">Регистрация</a>
+        </footer>
+
 	</body>
 </html>
