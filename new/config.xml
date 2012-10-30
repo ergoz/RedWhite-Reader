@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "com.ergoz.rwreader"
+	version 	= "1.3.0.2"
+	><!-- versionCode="425" -->
+
+	<name>RedWhite Reader</name>
+
+	<description>
+		RedWhite Reader - App to read Spartak Moscow Football Club news that provided by RedWhite.RU. All latest news, tables, scores in your phone or tablet.
+	</description>
+
+	<author href="http://ergoz.ru"
+		email="dev@ergoz.ru">
+		ErgoZ Development Studio
+	</author>
+
+	<access origin="*" subdomains="true" />
+
+	<preference name="phonegap-version" value="2.0.0" />
+
+	<icon src="/gap/icons/default.jpg" gap:role="default" />
+
+	<icon src="/gap/icons/android/ic_launcher.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="/gap/icons/android/ic_launcher.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="/gap/icons/android/ic_launcher.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="/gap/icons/android/ic_launcher.png" gap:platform="android" gap:density="xhdpi" />
+
+	<gap:splash src="/gap/splash/android/splash.9.png" gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="/gap/splash/android/splash.9.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="/gap/splash/android/splash.9.png" gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="/gap/splash/android/splash.9.png" gap:platform="android" gap:density="xhdpi" />
+
+	<!--
+	xhdpi xlarge screens are at least 960dp x 720dp
+	hdpi large screens are at least 640dp x 480dp
+	mdpi normal screens are at least 470dp x 320dp
+	ldpi small screens are at least 426dp x 320dp
+	-->
+
+	<feature name="http://api.phonegap.com/1.0/network"/>
+
+	<preference name="useBrowserHistory" value="false" />
+	<preference name="orientation" value="both" />
+	<preference name="fullscreen" value="true" />
+	<preference name="webviewbounce" value="false" />
+	<preference name="exit-on-suspend" value="true" />
+	<preference name="disable-cursor" value="true" />
+	<preference name="android-minSdkVersion" value="7" />
+	<preference name="android-maxSdkVersion" value="16+" />
+	<preference name="android-installLocation" value="auto" />
+
+</widget>

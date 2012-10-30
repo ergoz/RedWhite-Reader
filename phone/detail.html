@@ -21,7 +21,7 @@
 		var ads = window.localStorage.getItem("ads");
 		$('ads').html(ads);
 
-		var nID = $.getUrlVar('nid');
+		var nID = window.location.href;
 
 		var mnews = window.localStorage.getItem("news");
         var objnews = new Object;
