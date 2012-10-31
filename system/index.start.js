@@ -193,26 +193,30 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 			var youtubepagepreg = /^#pyoutubedetail\?nid\=/;
 
     		if ( u.hash.search(newspagepreg) !== -1 ) {
-				var nID = u.hash.replace( newspagepreg, "" );
+				var nID = u.hash.replace( newspagepreg, "" );
 	        	var mnews = window.localStorage.getItem("news");
 	        	var objnews = new Object;
 	        	objnews = JSON.parse(mnews);
 	       		$('#pnewsdetail #news-detail-content').html('<h2>'+objnews[nID].title+'</h2><p>'+objnews[nID].content+'</p>');
     		}
 			if ( u.hash.search(youtubepagepreg) !== -1 ) {
-				var nID = u.hash.replace( youtubepagepreg, "" );
+				var nID = u.hash.replace( youtubepagepreg , "" );
 	        	var mnews = window.localStorage.getItem("youtube");
 	        	var objnews = new Object;
 	        	objnews = JSON.parse(mnews);
 	       		$('#pyoutubedetail #youtube-detail-content').html('<h2>'+objnews[nID].title+'</h2><p>'+objnews[nID].content+'</p>');
     		}
-			
+
     	}
-    });   
-    
+    });
 
 
 
+$( document ).bind( "mobileinit", function() {
+    // Make your jQuery Mobile framework configuration changes here!
+	$.mobile.phonegapNavigationEnabled = true;
+    $.mobile.allowCrossDomainPages = true;
+});
 
 
 /**
@@ -221,9 +225,9 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 $(document).ready(function(){
     start_all_systems();
 
-    
 
-    
+
+
 /**
 	Новостная страница. Начало.
 	После загрузки контента мы уходим с неё удалив за собой историю.
