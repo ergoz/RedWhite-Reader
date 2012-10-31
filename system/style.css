@@ -17,7 +17,7 @@
 #calendar .ui-icon { background:  url(../system/icons/calendar.png) 50% 50% no-repeat; background-size: 24px 30px; }
 
 table.maintable {
-	width: 400px;
+	width: 100% !important;
 }
 
 /* Flicking fix on jqm */

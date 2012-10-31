@@ -12,12 +12,19 @@
     <script type="text/javascript" charset="utf-8" src="./system/jquery-latest.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0-alpha.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./system/jquery.eds.uriparser.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/index.start.js"></script>
 </head>
 	<body>
-			<header data-role="header" data-theme="a" data-position="fixed">
+
+<!--
+	Стартовая страница. Начало.
+	После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+	<div data-role="page" id="pstarting" data-title="RedWhite Reader">
+			<div data-role="header" data-theme="a" data-position="fixed">
 				<h1>RedWhite Reader</h1>
-                    <!-- Начало кнопки выхода -->
+                    <!-- Начало кнопки выхода
                     <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
                     <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
                         <div data-role="header" data-theme="a" class="ui-corner-top">
@@ -30,53 +37,577 @@
                         </div>
                     </div>
                     <!-- Конец кнопки выхода -->
-			</header>
-
-
+			</div>
 
 			<div data-role="content" data-theme="a" >
-				<style>
-					.ui-icon-rw-phone {
-						background-image: url("./system/images/phone.png");
-						width: 16px;
-						height: 28px;
-						border-radius: 0px;
-						margin-top: -15px !important;
-					}
-					.ui-icon-rw-pad {
-						background-image: url("./system/images/pad.png");
-						width: 22px;
-						height: 28px;
-						border-radius: 0px;
-						margin-top: -15px !important;
-					}
-				</style>
-
-
 				<div class="loading-content">
 					<center>
 					   <h3>Загрузка контента</h3>
 					   <div class="progress-console">Идёт агрузка контента...</div>
 					</center>
 				</div>
+			</div>
 
-				<div class="first-run" style="display:none;">
-				<center>
-					<h3>Первый запуск приложения</h3>
-					<p> Вы впервые запускаете наше приложение. Поэтому просим выбрать тип вашего устройства.
-					Это необходимо для правильного выбора интерфейса. После выбора это окно больше появляться не будет.
-					Однако вы можете изменить тип устройства в меню настроек.<br>
-					В данный момент поддерживается только вид для Смартфонов. Нажмите кнопку <b>ТОЛЬКО</b> после того как контент будет загружен.
-					</p>
-					<a onclick="SetPhoneSystem(); return false;" href="#" id="pad" data-role="button" data-icon="rw-pad">Планшет</a>
-					<a onclick="SetPhoneSystem(); return false;" href="#" id="phone" data-role="button" data-icon="rw-phone">Смартфон</a>
-				</center>
+			<div data-role="footer" data-position="fixed">
+				<div><ads></ads></div>
+			</div>
+	</div>
+<!--
+	Стартовая страница. Конец.
+-->
+
+
+
+
+
+<!--
+	Новостная страница. Начало.
+	После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+	<div data-role="page" id="pnews" data-title="RedWhite Reader Новости">
+		<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+				<!-- Начало кнопки МЕНЮ -->
+                    <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                    <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Меню</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                                <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
+                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки МЕНЮ -->
+
+					<h1>RedWhite Reader Новости</h1>
+
+                    <!-- Начало кнопки выхода
+					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+					<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+						<div data-role="header" data-theme="a" class="ui-corner-top">
+							<h1>Выход</h1>
+						</div>
+						<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+							<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+								<div style="margin-left:-15px;"><ads></ads></div>
+								<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+								<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+						</div>
+					</div>
+					<!-- Конец кнопки выхода -->
+
+					<div data-role="navbar">
+						<ul>
+							<li><a href="#" class="ui-btn-active">Новости</a></li>
+							<li><a href="#ptwitter">Twitter FCSM</a></li>
+						</ul>
+					</div>
+			</div>
+
+
+			<div data-role="content" data-theme="a">
+					<ul id="rss-news" data-role="listview">
+					</ul>
+			</div>
+
+
+		<div data-role="footer" data-position="fixed" data-id="footer">
+				<div data-role="navbar" class="nav-footer" data-iconpos="top">
+					<ul>
+						<li><a href="#pnews" id="news" data-icon="custom" class="ui-btn-active">Новости</a></li>
+						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
+						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom">Календарь</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>
+<!--
+	Новостная страница. Конец.
+-->
+
+
+
+
+
+
+
+<!--
+	Twitter страница. Начало.
+	После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+	<div data-role="page" id="ptwitter" data-title="RedWhite Reader Twitter">
+			<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+                <!-- Начало кнопки МЕНЮ -->
+                    <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                    <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Меню</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                                 <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
+                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки МЕНЮ -->
+
+                    <h1>RedWhite Reader Twitter</h1>
+
+                    <!-- Начало кнопки выхода
+                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Выход</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+                                <div style="margin-left:-15px;"><ads></ads></div>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки выхода -->
+                    <div data-role="navbar">
+						<ul>
+						<li><a href="#pnews">Новости</a></li>
+						<li><a href="#" class="ui-btn-active">Twitter FCSM</a></li>
+						</ul>
+					</div>
+			</div>
+
+
+			<div data-role="content" data-theme="a" >
+					<ul id="tw-news" data-role="listview">
+					</ul>
+			</div>
+
+
+       <div data-role="footer" data-position="fixed" data-id="footer">
+				<div data-role="navbar" class="nav-footer" data-iconpos="top">
+					<ul>
+						<li><a href="#pnews" id="news" data-icon="custom" class="ui-btn-active">Новости</a></li>
+						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
+						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom">Календарь</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>
+<!--
+	Twitter страница. Конец.
+-->
+
+
+
+
+
+
+
+
+
+<!--
+	Таблица чемпионата страница. Начало.
+	После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+	<div data-role="page" id="ptables" data-title="RedWhite Reader Таблицы">
+			<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+                <!-- Начало кнопки МЕНЮ -->
+                    <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                    <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Меню</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                                <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
+                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки МЕНЮ -->
+
+                    <h1>RedWhite Reader Таблицы</h1>
+
+                    <!-- Начало кнопки выхода
+                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Выход</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+                                <div style="margin-left:-15px;"><ads></ads></div>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки выхода -->
+			</div>
+
+
+			<div data-role="content" data-theme="a" data-tap-toggle="false">
+				<div id="tables-content">
 				</div>
 			</div>
 
 
-			<footer data-role="footer" data-position="fixed">
-				<div><ads></ads></div>
-			</footer>
+		<div data-role="footer" data-position="fixed" data-id="footer">
+				<div data-role="navbar" class="nav-footer" data-iconpos="top">
+					<ul>
+						<li><a href="#pnews" id="news" data-icon="custom">Новости</a></li>
+						<li><a href="#ptables" id="charts" data-icon="custom" class="ui-btn-active">Таблицы</a></li>
+						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom">Календарь</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>
+<!--
+	Таблица чемпионата страница. Конец.
+-->
+
+
+
+
+
+
+
+
+
+
+<!--
+	Youtube страница. Начало.
+	После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+	<div data-role="page" id="pyoutube" data-title="RedWhite Reader Youtube">
+			<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+                <!-- Начало кнопки МЕНЮ -->
+                    <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                    <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Меню</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                                <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
+                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки МЕНЮ -->
+
+                    <h1>RedWhite Reader Youtube</h1>
+
+                    <!-- Начало кнопки выхода
+                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Выход</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+                                <div style="margin-left:-15px;"><ads></ads></div>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки выхода -->
+			</div>
+
+
+			<div data-role="content" data-theme="a" data-tap-toggle="false">
+					<ul id="yt-news" data-role="listview">
+                	</ul>
+			</div>
+
+
+		<div data-role="footer" data-position="fixed" data-id="footer">
+				<div data-role="navbar" class="nav-footer" data-iconpos="top">
+					<ul>
+						<li><a href="#pnews" id="news" data-icon="custom">Новости</a></li>
+						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
+						<li><a href="#pyoutube" id="youtube" data-icon="custom" class="ui-btn-active">Youtube</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom">Календарь</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>
+<!--
+	Youtube страница. Конец.
+-->
+
+
+
+
+
+
+
+
+
+<!--
+	Online страница. Начало.
+	После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+	<div data-role="page" id="ponline" data-title="RedWhite Reader Online">
+		<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+				<!-- Начало кнопки МЕНЮ -->
+                    <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                    <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Меню</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                                <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
+                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки МЕНЮ -->
+
+					<h1>RedWhite Reader Online</h1>
+
+                    <!-- Начало кнопки выхода
+					<a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+					<div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+						<div data-role="header" data-theme="a" class="ui-corner-top">
+							<h1>Выход</h1>
+						</div>
+						<div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+							<h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+								<div style="margin-left:-15px;"><ads></ads></div>
+								<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+								<a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+						</div>
+					</div>
+					<!-- Конец кнопки выхода -->
+
+					<div data-role="navbar">
+						<ul>
+							<li data-theme="b"><a href="#" data-theme="b">Текст</a></li>
+							<li><a href="#ptwitter">Видео</a></li>
+						</ul>
+					</div>
+			</div>
+
+
+			<div data-role="content" data-theme="a">
+					<ul id="rss-news" data-role="listview">
+					</ul>
+			</div>
+
+
+		<div data-role="footer" data-position="fixed" data-id="footer">
+				<div data-role="navbar" class="nav-footer" data-iconpos="top">
+					<ul>
+						<li><a href="#pnews" id="news" data-icon="custom" data-theme="b">Новости</a></li>
+						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
+						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom" class="ui-btn-active">Online</a></li>
+						<li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom">Календарь</a></li>
+					</ul>
+				</div>
+		</div>
+	</div>
+<!--
+	Online страница. Конец.
+-->
+
+
+
+
+
+
+<!--
+    Календарь страница. Начало.
+    После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+    <div data-role="page" id="pcalendar" data-title="RedWhite Reader Календарь">
+        <div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+                <!-- Начало кнопки МЕНЮ -->
+                    <a href="#menuDialog" data-rel="popup" data-rel="back" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                    <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Меню</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                                <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
+                                <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки МЕНЮ -->
+
+                    <h1>RedWhite Reader Календарь</h1>
+
+                    <!-- Начало кнопки выхода
+                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Выход</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+                                <div style="margin-left:-15px;"><ads></ads></div>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки выхода -->
+
+                    <div data-role="navbar">
+                        <ul>
+                            <li data-theme="b"><a href="#" data-theme="b">Текст</a></li>
+                            <li><a href="#ptwitter">Видео</a></li>
+                        </ul>
+                    </div>
+            </div>
+
+
+            <div data-role="content" data-theme="a">
+                    <ul id="rss-news" data-role="listview">
+                    </ul>
+            </div>
+
+
+        <div data-role="footer" data-position="fixed" data-id="footer">
+                <div data-role="navbar" class="nav-footer" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pnews" id="news" data-icon="custom" data-theme="b">Новости</a></li>
+                        <li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
+                        <li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
+                        <li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+                        <li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom" class="ui-btn-active">Календарь</a></li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+<!--
+    Календарь страница. Конец.
+-->
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    Новость Детально. Начало.
+    После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+    <div data-role="page" id="pnewsdetail" data-title="RedWhite Reader Новость">
+        <div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+                <!-- Начало кнопки МЕНЮ -->
+                    <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">Меню</a>
+                <!-- Конец кнопки МЕНЮ -->
+
+                    <h1 id="news-detail-title">RedWhite Reader Новость</h1>
+
+                    <!-- Начало кнопки выхода
+                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Выход</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+                                <div style="margin-left:-15px;"><ads></ads></div>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки выхода -->
+            </div>
+
+
+            <div data-role="content" data-theme="a" id="news-detail-content">
+
+            </div>
+
+
+        <!-- <div data-role="footer" data-position="fixed" data-id="footer">
+                <div data-role="navbar" class="nav-footer" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pnews" id="news" data-icon="custom" data-theme="b">Новости</a></li>
+                        <li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
+                        <li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
+                        <li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+                        <li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom" class="ui-btn-active">Календарь</a></li>
+                    </ul>
+                </div>
+        </div> -->
+    </div>
+<!--
+    Новость Детально. Конец.
+-->
+
+
+
+
+
+
+
+
+<!--
+    Youtube Детально. Начало.
+    После загрузки контента мы уходим с неё удалив за собой историю.
+-->
+    <div data-role="page" id="pyoutubedetail" data-title="RedWhite Reader Youtube">
+        <div data-role="header" data-theme="a" data-position="fixed" data-id="header">
+                <!-- Начало кнопки МЕНЮ -->
+                    <a href="#" data-rel="back" data-icon="arrow-l" data-role="button" data-inline="true">Меню</a>
+                <!-- Конец кнопки МЕНЮ -->
+
+                    <h1 id="youtube-detail-title">RedWhite Reader Youtube</h1>
+
+                    <!-- Начало кнопки выхода
+                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
+                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
+                        <div data-role="header" data-theme="a" class="ui-corner-top">
+                            <h1>Выход</h1>
+                        </div>
+                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
+                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
+                                <div style="margin-left:-15px;"><ads></ads></div>
+                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
+                        </div>
+                    </div>
+                    <!-- Конец кнопки выхода -->
+            </div>
+
+
+            <div data-role="content" data-theme="a" id="youtube-detail-content">
+
+            </div>
+
+
+        <!-- <div data-role="footer" data-position="fixed" data-id="footer">
+                <div data-role="navbar" class="nav-footer" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pnews" id="news" data-icon="custom" data-theme="b">Новости</a></li>
+                        <li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
+                        <li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
+                        <li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+                        <li><a href="#" onclick="alert('Раздел в разработке');" id="calendar" data-icon="custom" class="ui-btn-active">Календарь</a></li>
+                    </ul>
+                </div>
+        </div> -->
+    </div>
+<!--
+    Youtube Детально. Конец.
+-->
+
+
+
+
 	</body>
 </html>
