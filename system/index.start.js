@@ -161,10 +161,10 @@ function load_content() {
 	    		ParseOnlineTV(data.online_tv);
 	    		ParseCalendar(data.calendar);
 	    		$('.progress-console').html("Контент загружен!");
-	    		$.mobile.changePage( "#pnews", {transition: "fade", reverse: false, changeHash: false} );
+	    		$.mobile.changePage( "#pnews", {transition: "fade", reverse: false, changeHash: true} );
 	    	} else {
 	    		alert("Ошибка: "+textStatus+"\n"+"Обновление контента небыло загружено. \nДля его обновления закройте приложение и откройте заново или используйте устаревшую версию.");
-	    		$.mobile.changePage( "#pnews", {transition: "fade", reverse: false, changeHash: false} );
+	    		$.mobile.changePage( "#pnews", {transition: "fade", reverse: false, changeHash: true} );
 	    	}
 	    });
 }
