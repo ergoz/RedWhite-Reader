@@ -283,17 +283,33 @@ $(document).ready(function(){
 
 
 
-      /**
-          	Таблицы чемпионата страница. Начало.
-          	После загрузки контента мы уходим с неё удалив за собой историю.
-      */
-       $( document ).delegate("#ptables", "pageinit", function() {
-             var mtables = window.localStorage.getItem("tables");
-             var objtables = new Object;
-             objtables = JSON.parse(mtables);
+        /**
+      	Таблицы чемпионата страница. Начало.
+      	После загрузки контента мы уходим с неё удалив за собой историю.
+  */
+   $( document ).delegate("#ptables", "pageinit", function() {
+         var mtables = window.localStorage.getItem("tables");
+         var objtables = new Object;
+         objtables = JSON.parse(mtables);
 
-             $('#ptables #tables-content').html(base64_decode(objtables[0].content));
-       });
+         $('#ptables #tables-content').html(base64_decode(objtables[0].content));
+   });
+
+
+
+
+
+   /**
+ 	Таблицы чемпионата страница. Начало.
+ 	После загрузки контента мы уходим с неё удалив за собой историю.
+*/
+$( document ).delegate("#pcalendar", "pageinit", function() {
+    var mcals = window.localStorage.getItem("calendar");
+    var objcals = new Object;
+    objcals = JSON.parse(mcals);
+
+    $('#pcalendar #pcalendarlist').html(base64_decode(objcals[0].content));
+});
 
 
 
