@@ -221,9 +221,9 @@ $( document ).bind( "mobileinit", function() {
     // Make your jQuery Mobile framework configuration changes here!
 	$.mobile.phonegapNavigationEnabled = false;
     $.mobile.allowCrossDomainPages = true;
-//  $.mobile.fixedToolbars.show = true;
+    $.mobile.fixedToolbars.show = true;
 	$.mobile.pageLoadErrorMessage = 'Раздел в разработке!';
-//	$.mobile.touchOverflowEnabled = true;
+	$.mobile.touchOverflowEnabled = true;
 });
 
 
