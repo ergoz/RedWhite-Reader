@@ -4,16 +4,12 @@
 	<meta charset="utf-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <title> RedWhiteReader </title>
-
-    <link rel="stylesheet" href="./system/jquery.mobile-1.2.0.min.css" />
-    <link rel="stylesheet" href="./system/eds_rwreader.min.css" />
-    <link rel="stylesheet" href="./system/style.css" />
-
-    <script type="text/javascript" charset="utf-8" src="./system/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./system/jquery-1.8.2.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./system/jquery.mobile-1.2.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
-    <script type="text/javascript" charset="utf-8" src="./system/jquery.eds.uriparser.js"></script>
     <script type="text/javascript" charset="utf-8" src="./system/index.start.js"></script>
+    <link rel="stylesheet" href="./system/jquery.mobile-1.2.0.css" />
+    <link rel="stylesheet" href="./system/style.css" />
 </head>
 	<body>
 
@@ -67,7 +63,7 @@
 	<div data-role="page" id="pnews" data-title="RedWhite Reader Новости">
 		<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
 				<!-- Начало кнопки МЕНЮ -->
-                    <a href="#menuDialog" data-rel="popup" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                     <a href="#menuDialog" data-rel="popup" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
                     <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" class="ui-corner-all">
                         <div data-role="header" data-theme="a" class="ui-corner-top">
                             <h1>Меню</h1>
@@ -75,7 +71,7 @@
                         <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
                                 <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
                                 <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
-                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a><br>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a>
                                 <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
                         </div>
                     </div>
@@ -119,7 +115,7 @@
 						<li><a href="#pnews" id="news" data-icon="custom" data-theme="b">Новости</a></li>
 						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
 						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
-						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#online" id="online" data-icon="custom">Online</a></li>
                         <li><a href="#pcalendar" id="calendar" data-icon="custom">Матчи</a></li>
 					</ul>
 				</div>
@@ -150,7 +146,7 @@
                         <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
                                 <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
                                 <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
-                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a><br>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a>
                                 <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
                         </div>
                     </div>
@@ -193,7 +189,7 @@
 						<li><a href="#pnews" id="news" data-icon="custom" data-theme="b">Новости</a></li>
 						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
 						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
-						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#online" id="online" data-icon="custom">Online</a></li>
                         <li><a href="#pcalendar" id="calendar" data-icon="custom">Матчи</a></li>
 					</ul>
 				</div>
@@ -218,7 +214,7 @@
 	<div data-role="page" id="ptables" data-title="RedWhite Reader Таблицы">
 			<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
                 <!-- Начало кнопки МЕНЮ -->
-                    <a href="#menuDialog" data-rel="popup" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                     <a href="#menuDialog" data-rel="popup" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
                     <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" class="ui-corner-all">
                         <div data-role="header" data-theme="a" class="ui-corner-top">
                             <h1>Меню</h1>
@@ -226,7 +222,7 @@
                         <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
                                 <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
                                 <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
-                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a><br>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a>
                                 <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
                         </div>
                     </div>
@@ -263,7 +259,7 @@
 						<li><a href="#pnews" id="news" data-icon="custom">Новости</a></li>
 						<li><a href="#ptables" id="charts" data-icon="custom" data-theme="b">Таблицы</a></li>
 						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
-						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#online" id="online" data-icon="custom">Online</a></li>
                         <li><a href="#pcalendar" id="calendar" data-icon="custom">Матчи</a></li>
 					</ul>
 				</div>
@@ -289,7 +285,7 @@
 	<div data-role="page" id="pyoutube" data-title="RedWhite Reader Youtube">
 			<div data-role="header" data-theme="a" data-position="fixed" data-id="header">
                 <!-- Начало кнопки МЕНЮ -->
-                    <a href="#menuDialog" data-rel="popup" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
+                     <a href="#menuDialog" data-rel="popup" data-icon="grid" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Меню</a>
                     <div data-role="popup" id="menuDialog" data-overlay-theme="a" data-theme="a" class="ui-corner-all">
                         <div data-role="header" data-theme="a" class="ui-corner-top">
                             <h1>Меню</h1>
@@ -297,7 +293,7 @@
                         <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
                                 <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
                                 <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
-                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a><br>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a>
                                 <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
                         </div>
                     </div>
@@ -334,7 +330,7 @@
 						<li><a href="#pnews" id="news" data-icon="custom">Новости</a></li>
 						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
 						<li><a href="#pyoutube" id="youtube" data-icon="custom" data-theme="b">Youtube</a></li>
-						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+						<li><a href="#online" id="online" data-icon="custom">Online</a></li>
                         <li><a href="#pcalendar" id="calendar" data-icon="custom">Матчи</a></li>
 					</ul>
 				</div>
@@ -367,7 +363,7 @@
                         <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
                                 <a href="./chat.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Чат</a><br>
                                 <a href="./config.html" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Настройки</a><br>
-                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a><br>
+                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-theme="a" style="width:90%;">Выход</a>
                                 <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a" style="width:90%;">Закрыть</a><br>
                         </div>
                     </div>
@@ -411,7 +407,7 @@
 						<li><a href="#pnews" id="news" data-icon="custom" data-theme="b">Новости</a></li>
 						<li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
 						<li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
-						<li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom" data-theme="b">Online</a></li>
+						<li><a href="#online" id="online" data-icon="custom" data-theme="b">Online</a></li>
                         <li><a href="#pcalendar" id="calendar" data-icon="custom">Матчи</a></li>
 					</ul>
 				</div>
@@ -485,7 +481,7 @@
                         <li><a href="#pnews" id="news" data-icon="custom">Новости</a></li>
                         <li><a href="#ptables" id="charts" data-icon="custom">Таблицы</a></li>
                         <li><a href="#pyoutube" id="youtube" data-icon="custom">Youtube</a></li>
-                        <li><a href="#" onclick="alert('Раздел в разработке');" id="online" data-icon="custom">Online</a></li>
+                        <li><a href="#online" id="online" data-icon="custom">Online</a></li>
                         <li><a href="#pcalendar" id="calendar" data-icon="custom" data-theme="b">Матчи</a></li>
                     </ul>
                 </div>

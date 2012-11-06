@@ -22,5 +22,5 @@ table.champ-table { font-size: 0.8em; }
 
 /* Flicking fix on jqm */
 .ui-page {
-    -webkit-backface-visibility: hidden !important;
+    /*-webkit-backface-visibility: hidden !important;*/
 }

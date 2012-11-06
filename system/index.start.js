@@ -131,9 +131,9 @@ function load_content() {
 	 $.ajaxSetup({
 	     timeout: 10000 //10 sec
 	  });
-	
+
 	$.get('http://ergoz.ru/rwreader/ads.php', function(data){
-		window.localStorage.setItem("ads", data);
+		window.localStorage.setItem("ads", "");
     });
 
     $.getJSON("http://ergoz.ru/rwreader/json.php?jsoncallback=?",
@@ -219,12 +219,11 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
 $( document ).bind( "mobileinit", function() {
     // Make your jQuery Mobile framework configuration changes here!
-	//$.mobile.phonegapNavigationEnabled = false;
+	$.mobile.phonegapNavigationEnabled = false;
     $.mobile.allowCrossDomainPages = true;
-    $.mobile.fixedToolbars.show(true);
-    $.mobile.fixedToolbars.show = true;
+//  $.mobile.fixedToolbars.show = true;
 	$.mobile.pageLoadErrorMessage = 'Раздел в разработке!';
-	$.mobile.touchOverflowEnabled = true;
+//	$.mobile.touchOverflowEnabled = true;
 });
 
 
@@ -301,7 +300,7 @@ $(document).ready(function(){
          var objtables = new Object;
          objtables = JSON.parse(mtables);
 
-         $('#ptables #tables-content').html("<center><h1>Таблица Чемпионата России 2012/2013</h1></center>"+base64_decode(objtables[0].content));
+         $('#ptables #tables-content').html("<center><h2>Таблица Чемпионата России 2012/2013</h2></center>"+base64_decode(objtables[0].content));
    });
 
 
