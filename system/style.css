@@ -1,4 +1,3 @@
-#tw-news {font-size: 0.7em !important;}
 
 .nav-footer .ui-btn-text {font-size: 0.75em !important;}
 
@@ -16,9 +15,10 @@
 
 #calendar .ui-icon { background:  url(../system/icons/calendar.png) 50% 50% no-repeat; background-size: 24px 30px; }
 
-table.maintable {
-	width: 100% !important;
-}
+table.champ-table { font-size: 0.8em; }
+
+#tw-news li {font-size: 0.8em !important;}
+
 
 /* Flicking fix on jqm */
 .ui-page {

@@ -128,7 +128,11 @@ function ParseCalendar(data) {
  */
 function load_content() {
     // ГРУЗИМ РЕКЛАМУ
-    $.get('http://ergoz.ru/rwreader/ads.php', function(data){
+	 $.ajaxSetup({
+	     timeout: 10000 //10 sec
+	  });
+	
+	$.get('http://ergoz.ru/rwreader/ads.php', function(data){
 		window.localStorage.setItem("ads", data);
     });
 
@@ -141,7 +145,8 @@ function load_content() {
 		youtube: "true",
 		online_tv: "true",
 		online_text: "true",
-		calendar: "true"
+		calendar: "true",
+		nocache: Math.round(new Date().getTime())
 	    },
 	   function(data, textStatus) {
 	    	if(textStatus == "success") {
@@ -214,8 +219,12 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
 $( document ).bind( "mobileinit", function() {
     // Make your jQuery Mobile framework configuration changes here!
-	$.mobile.phonegapNavigationEnabled = true;
+	//$.mobile.phonegapNavigationEnabled = false;
     $.mobile.allowCrossDomainPages = true;
+    $.mobile.fixedToolbars.show(true);
+    $.mobile.fixedToolbars.show = true;
+	$.mobile.pageLoadErrorMessage = 'Раздел в разработке!';
+	$.mobile.touchOverflowEnabled = true;
 });
 
 
@@ -292,7 +301,7 @@ $(document).ready(function(){
          var objtables = new Object;
          objtables = JSON.parse(mtables);
 
-         $('#ptables #tables-content').html(base64_decode(objtables[0].content));
+         $('#ptables #tables-content').html("<center><h1>Таблица Чемпионата России 2012/2013</h1></center>"+base64_decode(objtables[0].content));
    });
 
 
