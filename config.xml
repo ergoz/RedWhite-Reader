@@ -18,7 +18,7 @@
 
 	<access origin="*" subdomains="true" />
 
-	<preference name="phonegap-version" value="2.0.0" />
+	<preference name="phonegap-version" value="2.2.0" />
 
 	<icon src="/gap/icons/default.jpg" gap:role="default" />
 
