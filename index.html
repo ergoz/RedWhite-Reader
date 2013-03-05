@@ -2,13 +2,13 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> RedWhiteReader </title>
-        <link rel="stylesheet" href="./system/main.min.css" />
-        <link rel="stylesheet" href="./system/jquery.mobile.structure-1.2.0.min.css" />
+        <link rel="stylesheet" href="./system/redwhite.min.css" />
+        <link rel="stylesheet" href="./system/jquery.mobile.structure-1.3.0.min.css" />
         <link rel="stylesheet" href="./system/style.css" />
-        <script charset="utf-8" src="./system/jquery-1.7.2.js"></script>
-        <script charset="utf-8" src="./system/jquery.mobile-1.2.0.min.js"></script>
+        <script charset="utf-8" src="./system/jquery-1.8.2.min.js"></script>
+        <script charset="utf-8" src="./system/jquery.mobile-1.3.0.min.js"></script>
         <script charset="utf-8" type="text/javascript" src="./cordova.js"></script>
         <script type="text/javascript" charset="utf-8" src="./system/index.start.js"></script>
 </head>
@@ -21,26 +21,13 @@
 	<div data-role="page" id="pstarting" data-title="RedWhite Reader">
 			<div data-role="header" data-theme="a" data-position="fixed">
 				<h1>RedWhite Reader</h1>
-                    <!-- Начало кнопки выхода
-                    <a href="#exitDialog" data-rel="popup" data-rel="back" data-icon="delete" data-iconpos="notext" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Выход</a>
-                    <div data-role="popup" id="exitDialog" data-overlay-theme="a" data-theme="a" style="max-width:400px;" class="ui-corner-all">
-                        <div data-role="header" data-theme="a" class="ui-corner-top">
-                            <h1>Выход</h1>
-                        </div>
-                        <div data-role="content" data-theme="a" class="ui-corner-bottom ui-content">
-                            <h3 class="ui-title">Вы уверены что хотите выйти?</h3>
-                                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="a">Отмена</a>
-                                <a href="#" onclick="navigator.app.exitApp()" data-role="button" data-inline="true" data-transition="flow" data-theme="a">Выход</a>
-                        </div>
-                    </div>
-                    <!-- Конец кнопки выхода -->
 			</div>
 
 			<div data-role="content" data-theme="a" >
 				<div class="loading-content">
 					<center>
 					   <h3>Загрузка контента</h3>
-					   <div class="progress-console">Идёт агрузка контента...</div>
+					   <div class="progress-console">Идёт загрузка контента...</div>
 					</center>
 				</div>
 			</div>

@@ -168,6 +168,7 @@ function load_content() {
 	    		$('.progress-console').html("Контент загружен!");
 	    		$.mobile.changePage( "#pnews", {transition: "fade", reverse: false, changeHash: true} );
 	    	} else {
+				$('.progress-console').html("Ошибка загрузки контента!");
 	    		alert("Ошибка: "+textStatus+"\n"+"Обновление контента небыло загружено. \nДля его обновления закройте приложение и откройте заново или используйте устаревшую версию.");
 	    		$.mobile.changePage( "#pnews", {transition: "fade", reverse: false, changeHash: true} );
 	    	}
@@ -180,8 +181,8 @@ function load_content() {
  */
 function start_all_systems() {
 	load_content();
-	var ads = window.localStorage.getItem("ads");
-	$('ads').html(ads);
+	//var ads = window.localStorage.getItem("ads");
+	//$('ads').html(ads);
 }
 
 

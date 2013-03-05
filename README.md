@@ -3,9 +3,6 @@ RedWhite Reader
 
 RedWhite Reader - App to read Spartak Moscow Football Club news that provided by RedWhite.RU. All latest news, tables, scores in your phone or tablet.
 
-To get started -- checkout https://github.com/ergoz/RedWhite-Reader
-
-
 Usage
 -----
 
@@ -36,17 +33,9 @@ For more information on SemVer, please visit http://semver.org/.
 
 Bug tracker
 -----------
-
 Have a bug? Please create an issue here on GitHub!
-
 https://github.com/ergoz/RedWhite-Reader/issues
 
-
-
-Developers
-----------
-+ **build** - `make build`
-+ **watch** - `make watch`
 
 
 Authors
@@ -54,14 +43,12 @@ Authors
 
 **Sergey Morozov**
 
-+ http://ergoz.ru/contacts/sergey
++ http://ergoz.ru/
++ http://itsac.ru/
 + http://github.com/ergoz
 + http://twitter.com/ergozru
 
 
 License
 ---------------------
-
-Copyright 2012 ErgoZ Development Studio.
-
-Licensed under the PRIVATE
+Copyright 2013 ErgoZ Development Studio.
